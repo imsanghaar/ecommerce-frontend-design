@@ -57,3 +57,42 @@ document.addEventListener('DOMContentLoaded', () => {
     startCountdown(initialDuration);
     setupButtonListeners();
 });
+
+
+//Dropdown for the ship to button
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Select all dropdown elements in the secondary navigation
+    const dropdowns = document.querySelectorAll('.secondary-nav .dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('a'); // The link that gets clicked
+
+        // 2. Add click event to the trigger link
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault(); // Stop the link from refreshing the page/jumping
+
+            // Close other open dropdowns first (optional, but good for UX)
+            dropdowns.forEach(otherDropdown => {
+                if (otherDropdown !== dropdown) {
+                    otherDropdown.classList.remove('active');
+                }
+            });
+
+            // Toggle the 'active' class on the clicked dropdown
+            dropdown.classList.toggle('active');
+        });
+    });
+
+    // 3. Close dropdown if user clicks anywhere outside
+    document.addEventListener('click', function(e) {
+        dropdowns.forEach(dropdown => {
+            // Check if the click happened INSIDE the dropdown
+            const isClickInside = dropdown.contains(e.target);
+
+            // If click was OUTSIDE and the dropdown is currently open, close it
+            if (!isClickInside && dropdown.classList.contains('active')) {
+                dropdown.classList.remove('active');
+            }
+        });
+    });
+});
