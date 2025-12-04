@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Frontend</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <div class="top-header">
+            <div class="header-container">
+                <div class="brand-logo">
+                    <img src="assets/Layout/Brand/logo-colored.png" alt="Brand Logo">
+                </div>
+                <div class="search-area">
+                    <input type="search" placeholder="Search" class="search-input">
+                    <select class="category-select">
+                        <option>All category</option>
+                        <!-- More categories here -->
+                    </select>
+                    <button class="search-button">Search</button>
+                </div>
+                <div class="user-actions">
+                    <a href="#" class="action-item profile">
+                        <i class="fa-solid fa-user"></i>
+                        Profile
+                    </a>
+                    <a href="#" class="action-item messages">
+                        <i class="fa-solid fa-message"></i>
+                        Message
+                    </a>
+                    <a href="#" class="action-item orders">
+                        <i class="fa-solid fa-heart"></i>
+                        Orders
+                    </a>
+                    <a href="#" class="action-item cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        My cart
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="secondary-nav">
+            <div class="header-container">
+                <ul class="nav-links left-links">
+                    <li><a href="#" class="all-category-link"><i class="fa-solid fa-bars"></i> All
+                            category</a></li>
+                    <li><a href="#">Hot offers</a></li>
+                    <li><a href="#">Gift boxes</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Menu item</a></li>
+                    <li class="dropdown">
+                        <a href="#">Help <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                </ul>
+                <ul class="nav-links right-links">
+                    <li class="dropdown">
+                        <a href="#">English, USD <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Ship to <img src="assets/Layout1/Image/flags/DE@2x.png" alt="German Flag"
+                                class="flag-icon"> <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="header-container hero-section">
+            <div class="category-sidebar">
+                <ul>
+                    <li><a href="#" class="active">Automobiles</a></li>
+                    <li><a href="#">Clothes and wear</a></li>
+                    <li><a href="#">Home interiors</a></li>
+                    <li><a href="#">Computer and tech</a></li>
+                    <li><a href="#">Tools, equipments</a></li>
+                    <li><a href="#">Sports and outdoor</a></li>
+                    <li><a href="#">Animal and pets</a></li>
+                    <li><a href="#">Machinery tools</a></li>
+                    <li><a href="#">More category</a></li>
+                </ul>
+            </div>
+            <div class="hero-banner">
+                <img src="assets/Image/backgrounds/Banner-board-800x420 2.png" alt="Hero Banner">
+                <div class="banner-content">
+                    <h2>Latest trending <br><strong>Electronic items</strong></h2>
+                    <button>Learn more</button>
+                </div>
+            </div>
+            <div class="hero-side-cards">
+                <div class="user-greeting-card">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+                        <p>Hi, user <br>let's get stated</p>
+                    </div>
+                    <button class="join-now-button">Join now</button>
+                    <button class="login-button">Log in</button>
+                </div>
+                <div class="promo-card orange-card">
+                    <p>Get US $10 off <br>with a new <br>supplier</p>
+                </div>
+                <div class="promo-card teal-card">
+                    <p>Send quotes with <br>supplier <br>preferences</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="sale-section">
+        <div class="header-container">
+            <div class="sale-container">
+                <div class="deals-info">
+                    <h3>Deals and offers</h3>
+                    <p>Hygiene equipments</p>
+                    <div class="countdown-timer">
+                        <div class="time-box">
+                            <span class="time-value" id="days">04</span>
+                            <span class="time-label">Days</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-value" id="hours">13</span>
+                            <span class="time-label">Hour</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-value" id="minutes">34</span>
+                            <span class="time-label">Min</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-value" id="seconds">56</span>
+                            <span class="time-label">Sec</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    <a href="#" class="product-card">
+                        <div class="product-image">
+                            <img src="assets/Image/tech/image 32.png" alt="Smart Watch">
+                        </div>
+                        <div class="product-details">
+                            <p class="product-name">Smart watches</p>
+                            <span class="discount-badge">-25%</span>
+                        </div>
+                    </a>
+                    <a href="#" class="product-card">
+                        <div class="product-image">
+                            <img src="assets/Image/tech/image 29.png" alt="Laptops">
+                        </div>
+                        <div class="product-details">
+                            <p class="product-name">Laptops</p>
+                            <span class="discount-badge">-15%</span>
+                        </div>
+                    </a>
+                    <a href="#" class="product-card">
+                        <div class="product-image">
+                            <img src="assets/Image/tech/image 33.png" alt="GoPro">
+                        </div>
+                        <div class="product-details">
+                            <p class="product-name">GoPro cameras</p>
+                            <span class="discount-badge">-40%</span>
+                        </div>
+                    </a>
+                    <a href="#" class="product-card">
+                        <div class="product-image">
+                            <img src="assets/Image/tech/image 34.png" alt="Headphones">
+                        </div>
+                        <div class="product-details">
+                            <p class="product-name">Headphones</p>
+                            <span class="discount-badge">-25%</span>
+                        </div>
+                    </a>
+                    <a href="#" class="product-card">
+                        <div class="product-image">
+                            <img src="assets/Image/tech/8.png" alt="Phones">
+                        </div>
+                        <div class="product-details">
+                            <p class="product-name">Canon camr..</p>
+                            <span class="discount-badge">-25%</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-top-section">
+            <div class="footer-brand">
+                <div class="brand-logo">
+                    <img src="assets/Layout/Brand/logo-colored.png" alt="Brand Logo">
+                </div>
+                <p>Best information about the company gies here but now lorem ipsum is</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><img src="assets/Layout/Form/input-group/Icon/control/Vector.png"
+                            alt="Facebook"></a>
+                    <a href="#" class="social-icon"><img src="assets/Layout/Form/input-group/Icon/control/Vector.png"
+                            alt="Twitter"></a>
+                    <a href="#" class="social-icon"><img src="assets/Layout/Form/input-group/Icon/control/Vector.png"
+                            alt="LinkedIn"></a>
+                    <a href="#" class="social-icon"><img src="assets/Layout/Form/input-group/Icon/control/Vector.png"
+                            alt="Instagram"></a>
+                    <a href="#" class="social-icon"><img src="assets/Layout/Form/input-group/Icon/control/Vector.png"
+                            alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-links-group">
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Partnership</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Money Refund</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>For users</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">My Orders</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-get-app">
+                <h4>Get app</h4>
+                <a href="#" class="app-store-button"><img src="assets/Layout/Misc/market-button.png"
+                        alt="App Store"></a>
+                <a href="#" class="google-play-button"><img src="assets/Layout/Misc/market-button.png"
+                        alt="Google Play"></a>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>&copy; 2023 Ecommerce.</p>
+            <div class="language-selector">
+                <img src="assets/Layout1/Image/flags/GB@2x.png" alt="English Flag" class="flag-icon">
+                <span>English</span>
+                <span class="dropdown-arrow">▲</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
