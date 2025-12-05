@@ -96,3 +96,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// WhatsApp Inquiry Form Integration
+document.addEventListener('DOMContentLoaded', function() {
+    const inquiryForm = document.getElementById('inquiryForm');
+    
+    if (inquiryForm) {
+        inquiryForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Get form values
+            const itemName = document.getElementById('itemName').value;
+            const itemDetails = document.getElementById('itemDetails').value;
+            const quantity = document.getElementById('quantity').value;
+            const unit = document.getElementById('unit').value;
+            
+            // Check if required fields are filled
+            if (!itemName || !quantity) {
+                alert('Please fill in all required fields (Item name and Quantity)');
+                return;
+            }
+            
+            // Format the WhatsApp message
+            let message = `*New Inquiry Request*\n\n`;
+            message += `📦 *Item Needed:* ${itemName}\n`;
+            if (itemDetails) {
+                message += `📝 *Details:* ${itemDetails}\n`;
+            }
+            message += `🔢 *Quantity:* ${quantity} ${unit}\n\n`;
+            message += `_Sent from Website Inquiry Form_`;
+            
+            // WhatsApp number (Pakistani format: +92 instead of 0)
+            const whatsappNumber = '923441323835';
+            
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            // Open WhatsApp in new tab
+            window.open(whatsappURL, '_blank');
+            
+            // Optional: Reset form after submission
+            inquiryForm.reset();
+        });
+    }
+});

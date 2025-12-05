@@ -396,12 +396,13 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
             </div>
             <div class="inquiry-form-column">
-                <form class="inquiry-form">
-                    <input type="text" placeholder="What item you need?" class="form-input">
-                    <textarea placeholder="Type more details" class="form-textarea" rows="4"></textarea>
+                <form class="inquiry-form" id="inquiryForm">
+                    <input type="text" placeholder="What item you need?" class="form-input" id="itemName" required>
+                    <textarea placeholder="Type more details" class="form-textarea" rows="4"
+                        id="itemDetails"></textarea>
                     <div class="form-row">
-                        <input type="text" placeholder="Quantity" class="form-input half-width">
-                        <select class="form-select half-width">
+                        <input type="text" placeholder="Quantity" class="form-input half-width" id="quantity" required>
+                        <select class="form-select half-width" id="unit">
                             <option>Pcs</option>
                             <option>Box</option>
                             <option>Kg</option>
@@ -409,6 +410,105 @@
                     </div>
                     <button type="submit" class="submit-button">Send inquiry</button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Items Section -->
+    <section class="recommended-section">
+        <h2>Recommended items</h2>
+        <div class="recommended-container">
+            <div class="recommended-grid">
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/layout/alibaba/image/cloth/Bitmap.png " alt="Product 1">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$10.30</p>
+                        <p class="recommended-description">T-shirts with multiple colors, for men</p>
+                    </div>
+                </div>
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/layout/alibaba/image/cloth/Bitmap (2).png" alt="Product 2">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$10.30</p>
+                        <p class="recommended-description">Jeans shorts for men blue color</p>
+                    </div>
+                </div>
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/layout/alibaba/image/cloth/2 1.png" alt="Product 3">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$34.00</p>
+                        <p class="recommended-description">Brown winter coat medium sized</p>
+                    </div>
+                </div>
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/layout/alibaba/image/cloth/image 26.png" alt="Product 4">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$80.95</p>
+                        <p class="recommended-description">Jeans bag for travel for men</p>
+                    </div>
+                </div>
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/layout/alibaba/image/cloth/image 24.png" alt="Product 5">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$10.30</p>
+                        <p class="recommended-description">Leather wallet</p>
+                    </div>
+                </div>
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/image/tech/6.png" alt="Product 6">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$80.95</p>
+                        <p class="recommended-description">Canon camera black, 100x zoom</p>
+                    </div>
+                </div>
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/image/tech/image 29.png" alt="Product 7">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$8.99</p>
+                        <p class="recommended-description">Headset for gaming with mic</p>
+                    </div>
+                </div>
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/image/tech/8.png" alt="Product 8">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$10.30</p>
+                        <p class="recommended-description">Smart watches</p>
+                    </div>
+                </div>
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/layout/alibaba/image/cloth/image 24.png" alt="Product 9">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$10.30</p>
+                        <p class="recommended-description">Blue wallet for men leather</p>
+                    </div>
+                </div>
+                <div class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="src/assets/Image/tech/image 85.png" alt="Product 10">
+                    </div>
+                    <div class="recommended-details">
+                        <p class="recommended-price">$9.99</p>
+                        <p class="recommended-description">Jeans bag for women leather</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -421,16 +521,24 @@
                 </div>
                 <p>Best information about the company gies here but now lorem ipsum is</p>
                 <div class="social-icons">
-                    <a href="#" class="social-icon"><img
-                            src="src/assets/Layout/Form/input-group/Icon/control/Vector.png" alt="Facebook"></a>
-                    <a href="#" class="social-icon"><img
-                            src="src/assets/Layout/Form/input-group/Icon/control/Vector.png" alt="Twitter"></a>
-                    <a href="#" class="social-icon"><img
-                            src="src/assets/Layout/Form/input-group/Icon/control/Vector.png" alt="LinkedIn"></a>
-                    <a href="#" class="social-icon"><img
-                            src="src/assets/Layout/Form/input-group/Icon/control/Vector.png" alt="Instagram"></a>
-                    <a href="#" class="social-icon"><img
-                            src="src/assets/Layout/Form/input-group/Icon/control/Vector.png" alt="YouTube"></a>
+                    <a href="https://www.facebook.com/profile.php?id=61563501711991" target="_blank"
+                        class="social-icon facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-icon twitter">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/developershub-corporation/posts/?feedView=all"
+                        target="_blank" class="social-icon linkedin">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/developershubcorporation/" target="_blank"
+                        class="social-icon instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
                 </div>
             </div>
             <div class="footer-links-group">
