@@ -143,3 +143,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Search Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-input');
+    const searchButton = document.querySelector('.search-button');
+
+    function performSearch() {
+        const query = searchInput.value.trim();
+        if (query) {
+            // Redirect to products page with search query for comprehensive search
+            window.location.href = `src/html/products.html?search=${encodeURIComponent(query)}`;
+        }
+    }
+
+    if (searchButton) {
+        searchButton.addEventListener('click', performSearch);
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
+            }
+        });
+    }
+});

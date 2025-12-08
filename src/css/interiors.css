@@ -1,0 +1,249 @@
+/* Home Interiors Page Specific Styles */
+
+/* Dimension Tags for Furniture */
+.product-dimensions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.dimension-tag {
+    padding: 0.25rem 0.6rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e7;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #505050;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: all 0.2s ease;
+}
+
+.dimension-tag i {
+    color: #8b96a5;
+    font-size: 0.7rem;
+}
+
+.dimension-tag:hover {
+    background: linear-gradient(135deg, #e3f0ff 0%, #cce5ff 100%);
+    border-color: #0d6efd;
+    color: #0d6efd;
+}
+
+.dimension-tag:hover i {
+    color: #0d6efd;
+}
+
+/* Material Badge */
+.material-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #856404;
+    font-weight: 500;
+}
+
+.material-badge.wood {
+    background: linear-gradient(135deg, #d4a373 0%, #bc8a5f 100%);
+    border-color: #a0714d;
+    color: #fff;
+}
+
+.material-badge.metal {
+    background: linear-gradient(135deg, #adb5bd 0%, #868e96 100%);
+    border-color: #6c757d;
+    color: #fff;
+}
+
+.material-badge.fabric {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border-color: #28a745;
+    color: #155724;
+}
+
+.material-badge.leather {
+    background: linear-gradient(135deg, #795548 0%, #5d4037 100%);
+    border-color: #4e342e;
+    color: #fff;
+}
+
+.material-badge.glass {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-color: #2196f3;
+    color: #1565c0;
+}
+
+/* Room Tag */
+.room-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    background: #f8f9fa;
+    border: 1px solid #dee2e7;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #505050;
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.room-tag i {
+    font-size: 0.7rem;
+    color: #8b96a5;
+}
+
+/* Stock Status */
+.stock-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.stock-status.in-stock {
+    color: #198754;
+    background: rgba(25, 135, 84, 0.1);
+}
+
+.stock-status.low-stock {
+    color: #fd7e14;
+    background: rgba(253, 126, 20, 0.1);
+}
+
+.stock-status.out-of-stock {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+}
+
+.stock-status i {
+    font-size: 0.7rem;
+}
+
+/* Assembly Badge */
+.assembly-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e7 100%);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #495057;
+}
+
+.assembly-badge.easy {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+}
+
+.assembly-badge.moderate {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+    color: #856404;
+}
+
+.assembly-badge.professional {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+}
+
+/* Delivery Info */
+.delivery-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #505050;
+    margin-bottom: 0.5rem;
+}
+
+.delivery-info i {
+    color: #0d6efd;
+}
+
+.delivery-info .delivery-date {
+    font-weight: 600;
+    color: #198754;
+}
+
+/* Warranty Badge */
+.warranty-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.warranty-badge i {
+    font-size: 0.7rem;
+}
+
+/* Grid View Adjustments for Interior Products */
+.products-container.grid-view .product-dimensions {
+    display: none;
+}
+
+.products-container.grid-view .delivery-info {
+    font-size: 0.75rem;
+}
+
+.products-container.grid-view .material-badge,
+.products-container.grid-view .room-tag,
+.products-container.grid-view .assembly-badge,
+.products-container.grid-view .warranty-badge {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+}
+
+/* Color Swatches for Furniture */
+.furniture-colors {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.furniture-color-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #ddd;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.furniture-color-swatch:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 2px #0d6efd;
+}
+
+.furniture-color-swatch.active {
+    box-shadow: 0 0 0 2px #0d6efd;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-dimensions {
+        flex-wrap: wrap;
+    }
+    
+    .dimension-tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+}

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Discover premium home interior products. Shop furniture, kitchen appliances, decor, and more at unbeatable prices.">
+    <title>Home Interiors - E-commerce Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tech.css">
+    <link rel="stylesheet" href="../css/interiors.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/animations.css">
+</head>
+
+<body>
+    <header>
+        <div class="top-header">
+            <div class="header-container">
+                <div class="brand-logo">
+                    <a href="../../index.html"><img src="../assets/Layout/Brand/logo-colored.png" alt="Brand Logo"></a>
+                </div>
+                <div class="search-area">
+                    <input type="search" placeholder="Search furniture, appliances..." class="search-input"
+                        id="interiorsSearchInput">
+                    <select class="category-select">
+                        <option>All category</option>
+                        <option>Furniture</option>
+                        <option>Kitchen</option>
+                        <option>Decor</option>
+                        <option>Appliances</option>
+                    </select>
+                    <button class="search-button" id="interiorsSearchBtn">Search</button>
+                </div>
+                <div class="user-actions">
+                    <a href="#" class="action-item profile">
+                        <i class="fa-solid fa-user"></i>
+                        Profile
+                    </a>
+                    <a href="#" class="action-item messages">
+                        <i class="fa-solid fa-message"></i>
+                        Message
+                    </a>
+                    <a href="#" class="action-item orders">
+                        <i class="fa-solid fa-heart"></i>
+                        Orders
+                    </a>
+                    <a href="#" class="action-item cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        My cart
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="secondary-nav">
+            <div class="header-container">
+                <ul class="nav-links left-links">
+                    <li><a href="#" class="all-category-link"><i class="fa-solid fa-bars"></i> All category</a></li>
+                    <li><a href="#">Hot offers</a></li>
+                    <li><a href="#">Gift boxes</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Menu item</a></li>
+                    <li class="dropdown">
+                        <a href="#">Help <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                </ul>
+                <ul class="nav-links right-links">
+                    <li class="dropdown-shipto">
+                        <a href="#">English, USD <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">
+                            Ship to
+                            <img src="../assets/Layout1/Image/flags/DE@2x.png" class="flag-icon">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><img src="../assets/Layout1/Image/flags/AE@2x.png"> Arab Emirates</li>
+                            <li><img src="../assets/Layout1/Image/flags/CN@2x.png"> China</li>
+                            <li><img src="../assets/Layout1/Image/flags/FR@2x.png"> France</li>
+                            <li><img src="../assets/Layout1/Image/flags/DE@2x.png"> Germany</li>
+                            <li><img src="../assets/Layout1/Image/flags/DK@2x.png"> Denmark</li>
+                            <li><img src="../assets/Layout1/Image/flags/GB@2x.png"> United Kingdom</li>
+                            <li><img src="../assets/Layout1/Image/flags/icon.png"> Australia</li>
+                            <li><img src="../assets/Layout1/Image/flags/IT@2x.png"> Italy</li>
+                            <li><img src="../assets/Layout1/Image/flags/RU@2x.png"> Russia</li>
+                            <li><img src="../assets/Layout1/Image/flags/US@2x.png"> America</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="tech-page-main">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-container">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="#">Interiors</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="#">Home & Living</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>All Products</span>
+            </div>
+        </div>
+
+        <div class="tech-content-wrapper">
+            <!-- Sidebar -->
+            <aside class="tech-sidebar">
+                <!-- Category Section -->
+                <div class="sidebar-section">
+                    <h3>Category</h3>
+                    <ul class="category-list">
+                        <li><a href="#">Living Room</a></li>
+                        <li><a href="#">Bedroom</a></li>
+                        <li><a href="#">Kitchen</a></li>
+                        <li><a href="#">Bathroom</a></li>
+                        <li><a href="#">Office</a></li>
+                        <li><a href="#">Outdoor</a></li>
+                    </ul>
+                    <a href="#" class="see-all-link">See all</a>
+                </div>
+
+                <!-- Brands Section -->
+                <div class="sidebar-section">
+                    <h3>Brands</h3>
+                    <ul class="filter-list">
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-brand="ikea">
+                                <span class="checkmark"></span>
+                                IKEA
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-brand="ashley">
+                                <span class="checkmark"></span>
+                                Ashley Furniture
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-brand="wayfair">
+                                <span class="checkmark"></span>
+                                Wayfair
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-brand="westElm">
+                                <span class="checkmark"></span>
+                                West Elm
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-brand="potterybarn">
+                                <span class="checkmark"></span>
+                                Pottery Barn
+                            </label>
+                        </li>
+                    </ul>
+                    <a href="#" class="see-all-link show-more-brands">See all</a>
+                </div>
+
+                <!-- Room Type Section -->
+                <div class="sidebar-section">
+                    <h3>Room Type</h3>
+                    <ul class="filter-list">
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-room="living">
+                                <span class="checkmark"></span>
+                                Living Room
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-room="bedroom">
+                                <span class="checkmark"></span>
+                                Bedroom
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-room="kitchen">
+                                <span class="checkmark"></span>
+                                Kitchen
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-room="dining">
+                                <span class="checkmark"></span>
+                                Dining Room
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-room="office">
+                                <span class="checkmark"></span>
+                                Home Office
+                            </label>
+                        </li>
+                    </ul>
+                    <a href="#" class="see-all-link show-more-rooms">See all</a>
+                </div>
+
+                <!-- Material Section -->
+                <div class="sidebar-section">
+                    <h3>Material</h3>
+                    <ul class="filter-list">
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-material="wood">
+                                <span class="checkmark"></span>
+                                Wood
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-material="metal">
+                                <span class="checkmark"></span>
+                                Metal
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-material="fabric">
+                                <span class="checkmark"></span>
+                                Fabric
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-material="leather">
+                                <span class="checkmark"></span>
+                                Leather
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-material="glass">
+                                <span class="checkmark"></span>
+                                Glass
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Price Range Section -->
+                <div class="sidebar-section">
+                    <h3>Price range</h3>
+                    <div class="price-range-wrapper">
+                        <div class="price-slider-container">
+                            <input type="range" min="0" max="2000" value="0" class="price-slider" id="minPriceSlider">
+                            <input type="range" min="0" max="2000" value="2000" class="price-slider"
+                                id="maxPriceSlider">
+                        </div>
+                        <div class="price-inputs">
+                            <div class="price-input-group">
+                                <label>Min</label>
+                                <input type="number" id="minPriceInput" value="0" min="0">
+                            </div>
+                            <div class="price-input-group">
+                                <label>Max</label>
+                                <input type="number" id="maxPriceInput" value="2000" min="0">
+                            </div>
+                        </div>
+                        <button class="apply-price-btn" id="applyPriceBtn">Apply</button>
+                    </div>
+                </div>
+
+                <!-- Condition Section -->
+                <div class="sidebar-section">
+                    <h3>Condition</h3>
+                    <ul class="filter-list">
+                        <li>
+                            <label class="radio-label">
+                                <input type="radio" name="condition" value="any" checked>
+                                <span class="radiomark"></span>
+                                Any
+                            </label>
+                        </li>
+                        <li>
+                            <label class="radio-label">
+                                <input type="radio" name="condition" value="new">
+                                <span class="radiomark"></span>
+                                Brand new
+                            </label>
+                        </li>
+                        <li>
+                            <label class="radio-label">
+                                <input type="radio" name="condition" value="refurbished">
+                                <span class="radiomark"></span>
+                                Refurbished
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Ratings Section -->
+                <div class="sidebar-section">
+                    <h3>Ratings</h3>
+                    <ul class="filter-list rating-list">
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-rating="5">
+                                <span class="checkmark"></span>
+                                <span class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-rating="4">
+                                <span class="checkmark"></span>
+                                <span class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checkbox-label">
+                                <input type="checkbox" data-rating="3">
+                                <span class="checkmark"></span>
+                                <span class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="tech-main-content">
+                <!-- Top Bar -->
+                <div class="content-top-bar">
+                    <div class="results-info">
+                        <span id="itemCount">8</span> items in <strong>Home & Interiors</strong>
+                    </div>
+                    <div class="top-bar-actions">
+                        <label class="verified-checkbox">
+                            <input type="checkbox" id="verifiedOnly">
+                            <span class="checkmark"></span>
+                            Verified only
+                        </label>
+                        <select class="sort-select" id="sortSelect">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                        <div class="view-toggle">
+                            <button class="view-btn grid-view" id="gridViewBtn">
+                                <i class="fa-solid fa-grip"></i>
+                            </button>
+                            <button class="view-btn list-view active" id="listViewBtn">
+                                <i class="fa-solid fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Filters (dynamically populated by JS) -->
+                <div class="active-filters" id="activeFilters" style="display: none;"></div>
+
+                <!-- Product List (dynamically populated by JS) -->
+                <div class="products-container list-view" id="productsContainer">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container">
+                    <div class="items-per-page">
+                        <span>Show</span>
+                        <select id="itemsPerPage">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="page-btn prev" id="prevPage">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <span class="page-ellipsis">...</span>
+                        <button class="page-btn">10</button>
+                        <button class="page-btn next" id="nextPage">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="newsletter-container">
+                <h3>Subscribe on our newsletter</h3>
+                <p>Get daily news on upcoming offers from many suppliers all over the world</p>
+                <form class="newsletter-form">
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-top-section">
+            <div class="footer-brand">
+                <div class="brand-logo">
+                    <img src="../assets/Layout/Brand/logo-colored.png" alt="Brand Logo">
+                </div>
+                <p>Best information about the company gies here but now lorem ipsum is</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61563501711991" target="_blank"
+                        class="social-icon facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-icon twitter">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/developershub-corporation/posts/?feedView=all"
+                        target="_blank" class="social-icon linkedin">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/developershubcorporation/" target="_blank"
+                        class="social-icon instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon youtube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links-group">
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Partnership</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Money Refund</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>For users</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">My Orders</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-get-app">
+                <h4>Get app</h4>
+                <a href="#" class="app-store-button"><img src="../assets/Layout/Misc/market-button.png"
+                        alt="App Store"></a>
+                <a href="#" class="google-play-button"><img src="../assets/Layout/Misc/Group.png" alt="Google Play"></a>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>&copy; 2023 Ecommerce.</p>
+            <div class="language-selector">
+                <img src="../assets/Layout1/Image/flags/GB@2x.png" alt="English Flag" class="flag-icon">
+                <span>English</span>
+                <span class="dropdown-arrow">▲</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/interiors.js"></script>
+    <script src="../js/animations.js"></script>
+</body>
+
+</html>

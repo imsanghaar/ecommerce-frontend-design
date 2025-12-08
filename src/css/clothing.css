@@ -1,0 +1,186 @@
+/* Clothing Page Specific Styles */
+
+/* Color Filter Grid */
+.color-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.color-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.color-option input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.color-swatch {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.color-option:hover .color-swatch {
+    transform: scale(1.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.color-option input:checked ~ .color-swatch {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 5px #0d6efd;
+}
+
+.color-option input:checked ~ .color-swatch::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 0.75rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Override for white color swatch */
+.color-option input:checked ~ .color-swatch[style*="ffffff"]::after {
+    color: #1c1c1c;
+    text-shadow: none;
+}
+
+/* Buy Now Button for Clothing */
+.tech-product-card .product-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.buy-now-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.buy-now-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.buy-now-btn:hover::before {
+    left: 100%;
+}
+
+.buy-now-btn:hover {
+    background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+}
+
+.buy-now-btn:active {
+    transform: translateY(0);
+}
+
+.buy-now-btn i {
+    transition: transform 0.2s ease;
+}
+
+.buy-now-btn:hover i {
+    transform: scale(1.1);
+}
+
+/* Grid View Buy Now Button */
+.products-container.grid-view .buy-now-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+}
+
+/* Size Tags for Grid View */
+.product-sizes {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.size-tag {
+    padding: 0.25rem 0.5rem;
+    background: #f0f0f0;
+    border: 1px solid #dee2e7;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #505050;
+    transition: all 0.2s ease;
+}
+
+.size-tag:hover {
+    background: #e3f0ff;
+    border-color: #0d6efd;
+    color: #0d6efd;
+}
+
+/* Color Dots for Product Cards */
+.product-colors {
+    display: flex;
+    gap: 0.35rem;
+    margin-bottom: 0.75rem;
+}
+
+.product-color-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #ddd;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.product-color-dot:hover {
+    transform: scale(1.2);
+}
+
+/* Fashion Banner Gradient */
+.clothing-banner {
+    background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #ff9ff3 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .color-filter-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+
+    .color-swatch {
+        width: 28px;
+        height: 28px;
+    }
+}
