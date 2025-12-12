@@ -8,6 +8,7 @@ body {
     color: #333;
 }
 
+
 /* Header styles - Top Header */
 .top-header {
     background-color: #fff;
@@ -26,6 +27,39 @@ body {
     align-items: center;
     width: 100%; /* Ensure container takes full width of its parent */
     padding: 0 1rem; /* Keep horizontal padding */
+}
+
+@media (max-width: 1024px) {
+    .top-header .search-area {
+        max-width: 400px; /* Adjust search bar width for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .top-header {
+        height: auto; /* Allow height to adjust */
+        padding: 0.5rem 0; /* Add some vertical padding */
+    }
+
+    .top-header .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem; /* Reduce gap */
+    }
+
+    .brand-logo {
+        margin-bottom: 0.5rem; /* Add space below logo */
+        margin-right: 0; /* Remove right margin */
+    }
+
+    .search-area {
+        width: 100%;
+        max-width: 100%; /* Full width search bar */
+    }
+
+    .user-actions {
+        display: none; /* Hide user actions on small screens, can be moved to a mobile menu */
+    }
 }
 
 .brand-logo {
@@ -125,29 +159,133 @@ body {
     margin-left: 1.5rem; /* Increased spacing between items */
 }
 
-/* Secondary Navigation */
-.secondary-nav {
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
-    padding: 0.6rem 0; /* Adjusted padding */
+
+/* Responsive adjustments for general containers */
+@media (max-width: 1024px) {
+    .header-container {
+        max-width: 960px;
+        padding: 0 1rem;
+    }
 }
+
+@media (max-width: 768px) {
+    .header-container {
+        max-width: 720px;
+        padding: 0 0.5rem;
+    }
+}
+
+
+
+/* Secondary Navigation */
+
+.secondary-nav {
+
+    background-color: #fff;
+
+    border-bottom: 1px solid #eee;
+
+    padding: 0.6rem 0; /* Adjusted padding */
+
+}
+
+
 
 .secondary-nav .header-container {
+
     max-width: 1200px;
+
     margin: 0 auto;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     padding: 0 1rem;
+
 }
 
-.secondary-nav .nav-links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
+
+
+@media (max-width: 1024px) {
+
+    .secondary-nav .nav-links li {
+
+        margin-right: 0.8rem; /* Reduce spacing for tablets */
+
+    }
+
 }
+
+
+
+@media (max-width: 768px) {
+
+    .secondary-nav .header-container {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 0.5rem;
+
+    }
+
+
+
+    .secondary-nav .nav-links.left-links, 
+
+    .secondary-nav .nav-links.right-links {
+
+        width: 100%; /* Full width for mobile nav */
+
+        justify-content: space-around; /* Distribute items evenly */
+
+    }
+
+
+
+    .secondary-nav .nav-links li {
+
+        margin-right: 0;
+
+    }
+
+
+
+    /* Hide less important links on small screens */
+
+    .secondary-nav .nav-links.left-links li:nth-child(2),
+
+    .secondary-nav .nav-links.left-links li:nth-child(3),
+
+    .secondary-nav .nav-links.left-links li:nth-child(4) {
+
+        display: none;
+
+    }
+
+}
+
+
+
+.secondary-nav .nav-links {
+
+    list-style: none;
+
+    margin: 0;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
 
 .secondary-nav .nav-links li {
     margin-right: 1rem; /* Adjusted spacing */
@@ -265,6 +403,61 @@ body {
     background-color: #f0f2f5;
     padding: 1.5rem 0;
     position: relative;
+}
+
+/* Responsive adjustments for the hero section */
+@media (max-width: 1024px) {
+    .hero-section {
+        max-width: 960px; /* Limit width on tablets */
+        height: auto; /* Allow height to adjust */
+        flex-direction: column; /* Stack by default on tablets */
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .hero-banner {
+        width: 100%;
+        max-width: 600px; /* Limit banner width */
+        height: 250px; /* Adjust height for tablets */
+    }
+    .category-sidebar {
+        width: 100%;
+        max-width: 300px; /* Limit sidebar width when stacked */
+        order: 1; /* Ensure sidebar is first when stacked */
+    }
+    .hero-side-cards {
+        width: 100%;
+        max-width: 300px; /* Limit cards width */
+        flex-direction: row; /* Arrange cards horizontally if space allows */
+        justify-content: center;
+        order: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+    .hero-banner {
+        height: 200px; /* Further reduce height for mobile */
+        order: 2;
+    }
+    .category-sidebar {
+        max-width: 100%;
+        order: 1;
+    }
+    .hero-side-cards {
+        flex-direction: column; /* Stack cards vertically on mobile */
+        align-items: center;
+        max-width: 100%;
+        order: 3;
+        height: auto; /* Allow height to adjust */
+    }
+    .user-greeting-card, .promo-card {
+        width: 100%;
+        max-width: 300px; /* Ensure cards don't take full width and maintain some padding */
+    }
 }
 
 .hero-section {
@@ -556,6 +749,7 @@ body {
     background-color: #4ad9c2;
 }
 
+
 /* Sale Section */
 .sale-section {
     background-color: #f0f2f5;
@@ -572,6 +766,53 @@ body {
     width: 1180px; /* Fixed width */
     height: 240px; /* Fixed height */
     margin: 0 auto; /* Center the container */
+}
+
+@media (max-width: 1024px) {
+    .sale-container {
+        max-width: 960px; /* Adjust width for tablets */
+    }
+    .deals-info {
+        width: 240px; /* Slightly reduce width for deals info */
+    }
+    .product-grid {
+        flex-wrap: wrap; /* Allow products to wrap */
+        justify-content: center; /* Center products when wrapped */
+    }
+    .product-card {
+        width: calc(50% - 1rem); /* Two columns on tablets */
+        margin: 0.5rem;
+        border-right: none; /* Remove right border when wrapping */
+    }
+}
+
+@media (max-width: 768px) {
+    .sale-container {
+        flex-direction: column;
+        height: auto; /* Allow height to adjust */
+        padding: 1rem;
+    }
+    .deals-info {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
+    .product-grid {
+        grid-template-columns: 1fr; /* Single column for products on mobile */
+        gap: 1rem;
+        justify-items: center; /* Center items in the grid */
+    }
+    .product-card {
+        width: 80%; /* Adjust product card width for mobile */
+        max-width: 300px;
+        border-right: none; /* Ensure no right border */
+        border-bottom: 1px solid #eee; /* Add bottom border for separation */
+    }
+    .product-card:last-child {
+        border-bottom: none;
+    }
 }
 
 .deals-info {
@@ -689,6 +930,7 @@ body {
 }
 
 /* 2nd Section================================================================================================= */
+
 /* OUTER WRAPPER */
 .block-items-section {
     width: 1180px;
@@ -697,6 +939,48 @@ body {
     border-radius: 6px;
     overflow: hidden;
     background: #fff;
+}
+
+@media (max-width: 1024px) {
+    .block-items-section {
+        max-width: 960px;
+        padding: 0 1rem;
+    }
+    .header-container.block-items-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .block-image-column {
+        width: 100%;
+        height: 200px; /* Adjust height for stacked layout */
+    }
+    .block-cards-column {
+        width: 100%;
+    }
+    .item-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for tablets */
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .block-items-section {
+        padding: 0 0.5rem;
+    }
+    .block-image-column {
+        height: 150px; /* Further reduce height for mobile */
+    }
+    .item-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+        grid-template-rows: repeat(4, 1fr);
+    }
+    .item-card {
+        border-right: none; /* Remove right border when in 2 columns */
+        border-bottom: 1px solid #e0e0e0; /* Add bottom border */
+    }
+    .item-grid a:nth-child(3) {
+        border-right: none;
+    }
 }
 
 /* FIX: style the container you forgot */
