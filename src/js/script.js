@@ -27,35 +27,12 @@ function startCountdown(durationInSeconds) {
 
 // Initialize timer with 4 days, 13 hours, 34 minutes, 56 seconds
 // Total seconds = (4 * 24 * 3600) + (13 * 3600) + (34 * 60) + 56
+// Initialize timer with 4 days, 13 hours, 34 minutes, 56 seconds
+// Total seconds = (4 * 24 * 3600) + (13 * 3600) + (34 * 60) + 56
 const initialDuration = (4 * 86400) + (13 * 3600) + (34 * 60) + 56;
-
-// Button Event Listeners
-function setupButtonListeners() {
-    const joinNowBtn = document.querySelector('.join-now-button');
-    const loginBtn = document.querySelector('.login-button');
-
-    if (joinNowBtn) {
-        joinNowBtn.addEventListener('click', function() {
-            console.log('Join now button clicked');
-            alert('Join Now - Redirect to sign up page');
-            // You can replace this with actual navigation
-            // window.location.href = '/signup';
-        });
-    }
-
-    if (loginBtn) {
-        loginBtn.addEventListener('click', function() {
-            console.log('Log in button clicked');
-            alert('Log In - Redirect to login page');
-            // You can replace this with actual navigation
-            // window.location.href = '/login';
-        });
-    }
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     startCountdown(initialDuration);
-    setupButtonListeners();
 });
 
 
@@ -66,24 +43,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     dropdowns.forEach(dropdown => {
         const trigger = dropdown.querySelector('a'); // The link that gets clicked
+        const menu = dropdown.querySelector('.dropdown-menu');
 
         // 2. Add click event to the trigger link
-        trigger.addEventListener('click', function(e) {
-            e.preventDefault(); // Stop the link from refreshing the page/jumping
+        if (trigger) {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault(); // Stop the link from refreshing the page/jumping
 
-            // Close other open dropdowns first (optional, but good for UX)
-            dropdowns.forEach(otherDropdown => {
-                if (otherDropdown !== dropdown) {
-                    otherDropdown.classList.remove('active');
-                }
+                // Close other open dropdowns first (optional, but good for UX)
+                dropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('active');
+                    }
+                });
+
+                // Toggle the 'active' class on the clicked dropdown
+                dropdown.classList.toggle('active');
             });
+        }
 
-            // Toggle the 'active' class on the clicked dropdown
-            dropdown.classList.toggle('active');
-        });
+        // 3. Handle dropdown menu item selection (for Ship to dropdown)
+        if (menu) {
+            menu.querySelectorAll('li').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Get the flag image and country name
+                    const flagImg = item.querySelector('img');
+                    const countryName = item.textContent.trim();
+                    
+                    // Update the trigger display
+                    if (trigger && flagImg) {
+                        const triggerFlagImg = trigger.querySelector('.flag-icon');
+                        if (triggerFlagImg) {
+                            triggerFlagImg.src = flagImg.src;
+                            triggerFlagImg.alt = countryName + ' Flag';
+                        }
+                    }
+                    
+                    // Mark selected item
+                    menu.querySelectorAll('li').forEach(li => li.classList.remove('selected'));
+                    item.classList.add('selected');
+                    
+                    // Close dropdown
+                    dropdown.classList.remove('active');
+                    
+                    // Show toast notification
+                    showGlobalToast(`Shipping to ${countryName}`, 'success');
+                });
+                
+                // Add hover styling
+                item.style.cursor = 'pointer';
+            });
+        }
     });
 
-    // 3. Close dropdown if user clicks anywhere outside
+    // 4. Close dropdown if user clicks anywhere outside
     document.addEventListener('click', function(e) {
         dropdowns.forEach(dropdown => {
             // Check if the click happened INSIDE the dropdown
@@ -96,6 +111,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Global toast function for script.js
+function showGlobalToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 14px 24px;
+        background: ${type === 'success' ? '#00b517' : type === 'error' ? '#fa3434' : '#0d6efd'};
+        color: white;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        font-size: 14px;
+        font-weight: 500;
+        animation: slideIn 0.3s ease;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
 
 // WhatsApp Inquiry Form Integration
 document.addEventListener('DOMContentLoaded', function() {

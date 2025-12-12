@@ -4,17 +4,24 @@
 
 /* ===== PAGE LOAD FADE-IN ANIMATION ===== */
 body {
-    animation: pageLoadFadeIn 0.8s ease-out forwards;
+    animation: pageLoadFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes pageLoadFadeIn {
-    from {
+    0% {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-20px) scale(0.98);
+        filter: blur(5px);
     }
-    to {
+    50% {
+        opacity: 0.6;
+        transform: translateY(-5px) scale(0.99);
+        filter: blur(2px);
+    }
+    100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+        filter: blur(0);
     }
 }
 
@@ -364,16 +371,10 @@ html {
     transition: transform 0.3s var(--ease-smooth);
 }
 
-/* ===== MORPH BUTTON ===== */
+/* ===== MORPH BUTTON (Disabled hover effect) ===== */
 .morph-btn {
     transition: all 0.4s var(--ease-bounce);
     border-radius: 8px;
-}
-
-.morph-btn:hover {
-    border-radius: 30px;
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(13, 110, 253, 0.4);
 }
 
 /* ===== SLIDE SHINE BUTTON ===== */

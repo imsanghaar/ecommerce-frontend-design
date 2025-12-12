@@ -14,7 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
             shipping: 'free',
             description: 'Ultra-thin laptop with AMOLED display, Intel Core i7 processor, 16GB RAM, and 512GB SSD. Perfect for work and entertainment.',
             image: '../assets/Image/tech/image 34.png',
-            features: ['metallic', '8gb', 'largememory']
+            features: ['metallic', '8gb', 'largememory'],
+            reviews: [
+                { name: 'John D.', rating: 5, text: 'Amazing laptop! The display is stunning and performance is top-notch.' },
+                { name: 'Sarah M.', rating: 4, text: 'Great for work, battery life could be better but overall excellent.' },
+                { name: 'Mike R.', rating: 5, text: 'Best laptop I have ever owned. Highly recommended!' }
+            ]
         },
         {
             id: 2,
@@ -27,7 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
             shipping: 'free',
             description: 'Premium smartphone with titanium design, A17 Pro chip, 48MP camera system, and all-day battery life.',
             image: '../assets/Image/tech/image 32.png',
-            features: ['metallic', 'superpower', 'largememory']
+            features: ['metallic', 'superpower', 'largememory'],
+            reviews: [
+                { name: 'Alex K.', rating: 5, text: 'Best iPhone ever! Camera quality is incredible.' },
+                { name: 'Emma L.', rating: 5, text: 'The titanium design feels so premium. Love it!' },
+                { name: 'Chris P.', rating: 5, text: 'Fast, beautiful, and the battery lasts all day.' }
+            ]
         },
         {
             id: 3,
@@ -108,6 +118,9 @@ document.addEventListener('DOMContentLoaded', function() {
             features: ['plastic', 'superpower']
         }
     ];
+
+    // Expose products globally for the modal
+    window.allProducts = allProducts;
 
     let filteredProducts = [...allProducts];
     let currentView = 'list';
@@ -299,6 +312,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
+        // Add to Cart Button
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.add-to-cart-btn')) {
+                const btn = e.target.closest('.add-to-cart-btn');
+                try {
+                    const productData = JSON.parse(btn.dataset.product.replace(/&#39;/g, "'"));
+                    if (window.addToCart) {
+                        window.addToCart(productData);
+                        // Show success feedback
+                        const originalHtml = btn.innerHTML;
+                        btn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
+                        btn.classList.add('added');
+                        setTimeout(() => {
+                            btn.innerHTML = originalHtml;
+                            btn.classList.remove('added');
+                        }, 1500);
+                        showToast('Added to cart!', 'success');
+                    }
+                } catch (err) {
+                    console.error('Error adding to cart:', err);
+                }
+            }
+        });
     }
 
     // ===== VIEW SWITCHING =====
@@ -420,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 : '';
 
             return `
-                <div class="tech-product-card" data-price="${product.price}" data-brand="${product.brand}" data-rating="${product.rating}">
+                <div class="tech-product-card" data-price="${product.price}" data-brand="${product.brand}" data-rating="${product.rating}" data-product-id="${product.id}">
                     <div class="product-image">
                         <img src="${product.image}" alt="${product.name}">
                     </div>
@@ -438,11 +475,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <p class="product-description">${product.description}</p>
                         <div class="product-actions">
-                            <button class="buy-now-btn">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                Buy Now
+                            <button class="add-to-cart-btn" data-product='${JSON.stringify(product).replace(/'/g, "&#39;")}'>
+                                <i class="fa-solid fa-cart-plus"></i>
+                                Add to Cart
                             </button>
-                            <a href="#" class="view-details-link">View details</a>
+                            <a href="product-detail.html?data=${encodeURIComponent(JSON.stringify(product))}" class="view-details-btn">
+                                <i class="fa-solid fa-eye"></i>
+                                View Details
+                            </a>
                         </div>
                     </div>
                     <button class="wishlist-btn">
@@ -606,6 +646,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // ===== SHOW TOAST NOTIFICATION =====
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 14px 24px;
+            background: ${type === 'success' ? '#00b517' : type === 'error' ? '#fa3434' : '#0d6efd'};
+            color: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            font-size: 14px;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
 
     // Initialize the page
     init();

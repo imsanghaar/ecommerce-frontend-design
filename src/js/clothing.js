@@ -16,7 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: '../assets/layout/alibaba/image/cloth/Bitmap.png',
             sizes: ['S', 'M', 'L', 'XL'],
             colors: ['#1c1c1c', '#ffffff', '#0d6efd', '#dc3545'],
-            features: ['cotton', 'casual']
+            features: ['cotton', 'casual'],
+            reviews: [
+                { name: 'James L.', rating: 5, text: 'Great fit and very comfortable.' },
+                { name: 'Sarah M.', rating: 4, text: 'Nice fabric, shrunk a little after wash.' },
+                { name: 'Mike T.', rating: 5, text: 'Perfect basic t-shirt.' }
+            ]
         },
         {
             id: 2,
@@ -31,7 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: '../assets/layout/alibaba/image/cloth/Bitmap (2).png',
             sizes: ['28', '30', '32', '34', '36'],
             colors: ['#0d6efd', '#1c1c1c'],
-            features: ['denim', 'casual']
+            features: ['denim', 'casual'],
+            reviews: [
+                { name: 'Alex K.', rating: 5, text: 'Best shorts I own, very durable.' },
+                { name: 'Chris P.', rating: 5, text: 'Classic look, fits perfectly.' },
+                { name: 'Jordan B.', rating: 5, text: 'Love the color and material.' }
+            ]
         },
         {
             id: 3,
@@ -46,7 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
             image: '../assets/layout/alibaba/image/cloth/2 1.png',
             sizes: ['S', 'M', 'L'],
             colors: ['#8b4513', '#1c1c1c', '#6c757d'],
-            features: ['wool', 'formal', 'winter']
+            features: ['wool', 'formal', 'winter'],
+            reviews: [
+                { name: 'Elena R.', rating: 5, text: 'So warm and stylish!' },
+                { name: 'Tom H.', rating: 4, text: 'Good quality but sleeves are a bit long.' },
+                { name: 'Maria S.', rating: 5, text: 'Worth every penny.' }
+            ]
         },
         {
             id: 4,
@@ -124,6 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
             features: ['polyester', 'sports']
         }
     ];
+
+    // Expose products globally for the product detail page
+    window.allProducts = allProducts;
 
     let filteredProducts = [...allProducts];
     let currentView = 'list';
@@ -316,17 +334,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Buy Now Buttons
+        // Add to Cart Buttons
         document.addEventListener('click', (e) => {
-            if (e.target.closest('.buy-now-btn')) {
-                const btn = e.target.closest('.buy-now-btn');
-                const originalHtml = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
-                btn.style.background = 'linear-gradient(135deg, #198754 0%, #146c43 100%)';
-                setTimeout(() => {
-                    btn.innerHTML = originalHtml;
-                    btn.style.background = '';
-                }, 1500);
+            if (e.target.closest('.add-to-cart-btn')) {
+                const btn = e.target.closest('.add-to-cart-btn');
+                try {
+                    const productData = JSON.parse(btn.dataset.product.replace(/&#39;/g, "'"));
+                    if (window.addToCart) {
+                        window.addToCart(productData);
+                        const originalHtml = btn.innerHTML;
+                        btn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
+                        btn.classList.add('added');
+                        setTimeout(() => {
+                            btn.innerHTML = originalHtml;
+                            btn.classList.remove('added');
+                        }, 1500);
+                        showToast('Added to cart!', 'success');
+                    }
+                } catch (err) {
+                    console.error('Error adding to cart:', err);
+                }
             }
         });
 
@@ -482,11 +509,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="product-colors">${colorsHtml}</div>
                         <p class="product-description">${product.description}</p>
                         <div class="product-actions">
-                            <button class="buy-now-btn">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                Buy Now
+                            <button class="add-to-cart-btn" data-product='${JSON.stringify(product).replace(/'/g, "&#39;")}'>
+                                <i class="fa-solid fa-cart-plus"></i>
+                                Add to Cart
                             </button>
-                            <a href="#" class="view-details-link">View details</a>
+                            <a href="product-detail.html?data=${encodeURIComponent(JSON.stringify(product))}" class="view-details-btn">
+                                <i class="fa-solid fa-eye"></i>
+                                View Details
+                            </a>
                         </div>
                     </div>
                     <button class="wishlist-btn">
@@ -649,6 +679,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // ===== SHOW TOAST NOTIFICATION =====
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 14px 24px;
+            background: ${type === 'success' ? '#00b517' : type === 'error' ? '#fa3434' : '#0d6efd'};
+            color: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            font-size: 14px;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
 
     // Initialize the page
     init();

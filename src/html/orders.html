@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - E-commerce Store</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/animations.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .order-card {
+            background: white;
+            border: 1px solid #dee2e7;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .order-header {
+            background: #f7fafc;
+            padding: 15px 20px;
+            border-bottom: 1px solid #dee2e7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: #1c1c1c;
+        }
+
+        .order-date {
+            color: #8b96a5;
+            font-size: 14px;
+        }
+
+        .order-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status-delivered {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .status-processing {
+            background: #fff3cd;
+            color: #664d03;
+        }
+
+        .order-body {
+            padding: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .item-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            object-fit: contain;
+            padding: 5px;
+        }
+
+        .item-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            color: #1c1c1c;
+        }
+
+        .item-meta {
+            font-size: 13px;
+            color: #8b96a5;
+        }
+
+        .order-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #dee2e7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-price {
+            font-weight: 700;
+            font-size: 18px;
+            color: #1c1c1c;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-header">
+            <div class="header-container">
+                <div class="brand-logo">
+                    <a href="../../index.html"><img src="../assets/Layout/Brand/logo-colored.png" alt="Brand Logo"></a>
+                </div>
+
+                <div class="search-area">
+                    <input type="search" placeholder="Search" class="search-input">
+                    <button class="search-button">Search</button>
+                </div>
+
+                <div class="user-actions">
+                    <a href="profile.html" class="action-item profile">
+                        <i class="fa-solid fa-user"></i>
+                        Profile
+                    </a>
+                    <a href="#" class="action-item messages">
+                        <i class="fa-solid fa-message"></i>
+                        Message
+                    </a>
+                    <a href="orders.html" class="action-item orders active">
+                        <i class="fa-solid fa-heart"></i>
+                        Orders
+                    </a>
+                    <a href="cart.html" class="action-item cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        My cart
+                        <span class="cart-count" id="headerCartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="secondary-nav">
+            <div class="header-container">
+                <ul class="nav-links left-links">
+                    <li><a href="#" class="all-category-link"><i class="fa-solid fa-bars"></i> All category</a></li>
+                    <li><a href="#">Hot offers</a></li>
+                    <li><a href="#">Gift boxes</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Menu item</a></li>
+                    <li class="dropdown">
+                        <a href="#">Help <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                </ul>
+                <ul class="nav-links right-links">
+                    <li class="dropdown">
+                        <a href="#">English, USD <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Ship to <img src="../assets/Layout1/Image/flags/DE@2x.png" class="flag-icon"
+                                alt="Flag"> <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="profile-container">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="profile-header-card">
+                <div class="profile-avatar" id="sidebarAvatar">
+                    <i class="fa-solid fa-user"
+                        style="font-size: 40px; color: #ccc; margin-top: 30px; display: block;"></i>
+                </div>
+                <h3 class="profile-name" id="sidebarName">User</h3>
+                <p class="profile-email" id="sidebarEmail">user@example.com</p>
+            </div>
+            <nav class="profile-menu">
+                <a href="profile.html" class="profile-menu-item">
+                    <i class="fa-regular fa-user"></i> My Profile
+                </a>
+                <a href="orders.html" class="profile-menu-item active">
+                    <i class="fa-solid fa-box"></i> My Orders
+                </a>
+                <a href="cart.html" class="profile-menu-item">
+                    <i class="fa-solid fa-cart-shopping"></i> My Cart
+                </a>
+                <a href="#" class="profile-menu-item" id="logoutBtn" style="color: #fa3434;">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Content -->
+        <main class="profile-content">
+            <h2 class="section-title">My Orders</h2>
+
+            <div id="ordersList">
+                <!-- Data will be populated by JS -->
+            </div>
+        </main>
+        const ordersList = document.getElementById('ordersList');
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+
+        // Filter orders for current user
+        const userOrders = allOrders.filter(order => order.username === (currentUser ? currentUser.username : ''));
+
+        if (!currentUser || userOrders.length === 0) {
+        ordersList.innerHTML = `
+        <div
+            style="text-align: center; padding: 40px; background: white; border-radius: 8px; border: 1px solid #dee2e7;">
+            <i class="fa-solid fa-box-open" style="font-size: 48px; color: #dee2e7; margin-bottom: 20px;"></i>
+            <h3>No orders yet</h3>
+            <p style="color: #8b96a5;">Start shopping to see your orders here.</p>
+            <a href="../../index.html" class="auth-btn"
+                style="display: inline-block; width: auto; margin-top: 20px; text-decoration: none;">Start Shopping</a>
+        </div>
+        `;
+        return;
+        }
+
+        // Sort by date (newest first)
+        userOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        ordersList.innerHTML = userOrders.map(order => `
+        <div class="order-card">
+            <div class="order-header">
+                <div>
+                    <span class="order-id">Order #${order.id}</span>
+                    <span class="order-date"> • ${order.date}</span>
+                </div>
+                <span class="order-status status-${order.status.toLowerCase()}">${order.status}</span>
+            </div>
+            <div class="order-body">
+                ${order.items.map(item => `
+                <div class="order-item">
+                    <img src="${item.image}" class="item-img" alt="${item.name}">
+                    <div class="item-info">
+                        <h4>${item.name}</h4>
+                        <div class="item-meta">Qty: ${item.quantity} • $${item.price}</div>
+                    </div>
+                </div>
+                `).join('')}
+            </div>
+            <div class="order-footer">
+                <div style="font-size: 14px; color: #505050;">Items: ${order.items.reduce((acc, item) => acc +
+                    item.quantity, 0)}</div>
+                <div class="total-price">Total: $${order.total}</div>
+            </div>
+        </div>
+        `).join('');
+        }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - E-commerce Store</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="../css/animations.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-header">
+            <div class="header-container">
+                <div class="brand-logo">
+                    <a href="../../index.html"><img src="../assets/Layout/Brand/logo-colored.png" alt="Brand Logo"></a>
+                </div>
+
+                <div class="search-area">
+                    <input type="search" placeholder="Search" class="search-input">
+                    <button class="search-button">Search</button>
+                </div>
+
+                <div class="user-actions">
+                    <a href="profile.html" class="action-item profile active">
+                        <i class="fa-solid fa-user"></i>
+                        Profile
+                    </a>
+                    <a href="#" class="action-item messages">
+                        <i class="fa-solid fa-message"></i>
+                        Message
+                    </a>
+                    <a href="orders.html" class="action-item orders">
+                        <i class="fa-solid fa-heart"></i>
+                        Orders
+                    </a>
+                    <a href="cart.html" class="action-item cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        My cart
+                        <span class="cart-count" id="headerCartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="secondary-nav">
+            <div class="header-container">
+                <ul class="nav-links left-links">
+                    <li><a href="#" class="all-category-link"><i class="fa-solid fa-bars"></i> All category</a></li>
+                    <li><a href="#">Hot offers</a></li>
+                    <li><a href="#">Gift boxes</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Menu item</a></li>
+                    <li class="dropdown">
+                        <a href="#">Help <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                </ul>
+                <ul class="nav-links right-links">
+                    <li class="dropdown">
+                        <a href="#">English, USD <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Ship to <img src="../assets/Layout1/Image/flags/DE@2x.png" class="flag-icon"
+                                alt="Flag"> <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="profile-container">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="profile-header-card">
+                <div class="profile-avatar" id="sidebarAvatar">
+                    <i class="fa-solid fa-user"
+                        style="font-size: 40px; color: #ccc; margin-top: 30px; display: block;"></i>
+                </div>
+                <h3 class="profile-name" id="sidebarName">User</h3>
+                <p class="profile-email" id="sidebarEmail">user@example.com</p>
+            </div>
+            <nav class="profile-menu">
+                <a href="profile.html" class="profile-menu-item active">
+                    <i class="fa-regular fa-user"></i> My Profile
+                </a>
+                <a href="orders.html" class="profile-menu-item">
+                    <i class="fa-solid fa-box"></i> My Orders
+                </a>
+                <a href="cart.html" class="profile-menu-item">
+                    <i class="fa-solid fa-cart-shopping"></i> My Cart
+                </a>
+                <a href="#" class="profile-menu-item" id="logoutBtn" style="color: #fa3434;">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Content -->
+        <main class="profile-content">
+            <h2 class="section-title">My Profile</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Full Name</label>
+                    <p id="profileName">Loading...</p>
+                </div>
+
+                <div class="info-item">
+                    <label>Email Address</label>
+                    <p id="profileEmail">Loading...</p>
+                </div>
+
+                <div class="info-item">
+                    <label>Username</label>
+                    <p id="profileUsername">Loading...</p>
+                </div>
+
+                <div class="info-item">
+                    <label>Password</label>
+                    <p>********</p>
+                </div>
+            </div>
+
+            <button class="logout-btn" id="logoutMainBtn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                Logout from all devices
+            </button>
+            </script>
+</body>
+
+</html>

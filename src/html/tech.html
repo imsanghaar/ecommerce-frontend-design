@@ -7,6 +7,8 @@
     <title>Tech Products - E-commerce</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/tech.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -40,9 +42,10 @@
                         <i class="fa-solid fa-heart"></i>
                         Orders
                     </a>
-                    <a href="#" class="action-item cart">
+                    <a href="cart.html" class="action-item cart">
                         <i class="fa-solid fa-cart-shopping"></i>
                         My cart
+                        <span class="cart-count" id="headerCartCount">0</span>
                     </a>
                 </div>
             </div>
@@ -484,9 +487,14 @@
         </div>
     </footer>
 
+    <script src="../js/cart.js"></script>
     <script src="../js/script.js"></script>
     <script src="../js/tech.js"></script>
     <script src="../js/animations.js"></script>
+
+    <!-- ElevenLabs Chatbot Widget -->
+    <elevenlabs-convai agent-id="agent_5401kc8f5b2eeqbs7tfxz4d9yqmq"></elevenlabs-convai>
+    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 </body>
 
 </html>

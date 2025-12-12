@@ -294,6 +294,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
+    // Expose products globally for the product detail page
+    window.allProducts = allProducts;
+
     // ===== STATE =====
     let currentPage = 1;
     let itemsPerPage = 8;
@@ -414,17 +417,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Buy Now Button
+        // Add to Cart Button
         document.addEventListener('click', (e) => {
-            if (e.target.closest('.product-buy-btn')) {
-                const btn = e.target.closest('.product-buy-btn');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Added to Cart';
-                btn.style.background = '#00a000';
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = '';
-                }, 1500);
+            if (e.target.closest('.add-to-cart-btn')) {
+                const btn = e.target.closest('.add-to-cart-btn');
+                try {
+                    const productData = JSON.parse(btn.dataset.product.replace(/&#39;/g, "'"));
+                    if (window.addToCart) {
+                        window.addToCart(productData);
+                        const originalHtml = btn.innerHTML;
+                        btn.innerHTML = '<i class="fa-solid fa-check"></i> Added!';
+                        btn.classList.add('added');
+                        setTimeout(() => {
+                            btn.innerHTML = originalHtml;
+                            btn.classList.remove('added');
+                        }, 1500);
+                        showToast('Added to cart!', 'success');
+                    }
+                } catch (err) {
+                    console.error('Error adding to cart:', err);
+                }
             }
         });
 
@@ -534,10 +546,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     </button>
                     <img src="${product.image}" alt="${product.name}" loading="lazy">
                     <div class="product-quick-actions">
-                        <button class="quick-action-btn">
+                        <a href="product-detail.html?data=${encodeURIComponent(JSON.stringify(product))}" class="quick-action-btn">
                             <i class="fa-solid fa-eye"></i>
-                            Quick View
-                        </button>
+                            View Details
+                        </a>
                     </div>
                 </div>
                 <div class="product-card-info">
@@ -551,10 +563,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="rating-stars">${starsHtml}</div>
                         <span class="rating-count">(${product.reviews})</span>
                     </div>
-                    <button class="product-buy-btn">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        Buy Now
-                    </button>
+                    <div class="product-card-actions">
+                        <button class="add-to-cart-btn" data-product='${JSON.stringify(product).replace(/'/g, "&#39;")}'>
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Add to Cart
+                        </button>
+                        <a href="product-detail.html?data=${encodeURIComponent(JSON.stringify(product))}" class="view-details-btn">
+                            <i class="fa-solid fa-eye"></i>
+                            Details
+                        </a>
+                    </div>
                 </div>
             </div>
         `;
@@ -674,6 +692,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // ===== SHOW TOAST NOTIFICATION =====
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 14px 24px;
+            background: ${type === 'success' ? '#00b517' : type === 'error' ? '#fa3434' : '#0d6efd'};
+            color: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            font-size: 14px;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
 
     // Initialize
     init();

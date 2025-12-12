@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your shopping cart - Review and checkout your selected items.">
+    <title>My Cart - E-commerce Store</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/animations.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ===== HEADER SECTION ===== -->
+    <header>
+        <div class="top-header">
+            <div class="header-container">
+                <div class="brand-logo">
+                    <a href="../../index.html"><img src="../assets/Layout/Brand/logo-colored.png" alt="Brand Logo"></a>
+                </div>
+
+                <div class="search-area">
+                    <input type="search" placeholder="Search" class="search-input" id="searchInput">
+                    <select class="category-select">
+                        <option>All category</option>
+                        <option>Electronics</option>
+                        <option>Clothing</option>
+                        <option>Home & Garden</option>
+                    </select>
+                    <button class="search-button">Search</button>
+                </div>
+
+                <div class="user-actions">
+                    <a href="#" class="action-item profile">
+                        <i class="fa-solid fa-user"></i>
+                        Profile
+                    </a>
+                    <a href="#" class="action-item messages">
+                        <i class="fa-solid fa-message"></i>
+                        Message
+                    </a>
+                    <a href="#" class="action-item orders">
+                        <i class="fa-solid fa-heart"></i>
+                        Orders
+                    </a>
+                    <a href="cart.html" class="action-item cart active">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        My cart
+                        <span class="cart-count" id="headerCartCount">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="secondary-nav">
+            <div class="header-container">
+                <ul class="nav-links left-links">
+                    <li><a href="#" class="all-category-link"><i class="fa-solid fa-bars"></i> All category</a></li>
+                    <li><a href="#">Hot offers</a></li>
+                    <li><a href="#">Gift boxes</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Menu item</a></li>
+                    <li class="dropdown">
+                        <a href="#">Help <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                </ul>
+                <ul class="nav-links right-links">
+                    <li class="dropdown-shipto">
+                        <a href="#">English, USD <i class="fa-solid fa-caret-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">
+                            Ship to
+                            <img src="../assets/Layout1/Image/flags/DE@2x.png" class="flag-icon" alt="Flag">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="cart-main">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-container" aria-label="Breadcrumb">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>My cart</span>
+            </div>
+        </nav>
+
+        <!-- Cart Content -->
+        <div class="cart-content-wrapper">
+            <!-- Left: Cart Items -->
+            <section class="cart-items-section">
+                <div class="cart-header">
+                    <h1>My cart (<span id="cartItemCount">0</span>)</h1>
+                </div>
+
+                <!-- Cart Items List -->
+                <div class="cart-items-list" id="cartItemsList">
+                    <!-- Cart items will be populated by JavaScript -->
+                    <div class="empty-cart" id="emptyCart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added any items to your cart yet.</p>
+                        <a href="products.html" class="continue-shopping-btn">Continue Shopping</a>
+                    </div>
+                </div>
+
+                <!-- Cart Actions -->
+                <div class="cart-actions">
+                    <a href="../../index.html" class="back-to-shop-btn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to shop
+                    </a>
+                    <button class="remove-all-btn" id="removeAllBtn">
+                        <i class="fa-solid fa-trash"></i>
+                        Remove all
+                    </button>
+                </div>
+            </section>
+
+            <!-- Right: Checkout Sidebar -->
+            <aside class="checkout-sidebar">
+                <!-- Coupon Section -->
+                <div class="coupon-section">
+                    <p class="coupon-label">Have a coupon?</p>
+                    <div class="coupon-input-group">
+                        <input type="text" placeholder="Add coupon" id="couponInput">
+                        <button class="apply-coupon-btn" id="applyCouponBtn">Apply</button>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotalAmount">$0.00</span>
+                    </div>
+                    <div class="summary-row discount">
+                        <span>Discount:</span>
+                        <span class="discount-value" id="discountAmount">- $0.00</span>
+                    </div>
+                    <div class="summary-row tax">
+                        <span>Tax:</span>
+                        <span class="tax-value" id="taxAmount">+ $0.00</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span class="total-value" id="totalAmount">$0.00</span>
+                    </div>
+
+                    <button class="checkout-btn" id="checkoutBtn">
+                        Checkout
+                    </button>
+
+                    <div class="payment-methods">
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-brands fa-paypal"></i>
+                        <i class="fa-brands fa-apple-pay"></i>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Saved for Later Section -->
+        <section class="saved-for-later-section">
+            <div class="section-header">
+                <h2>Saved for later</h2>
+            </div>
+            <div class="saved-items-grid" id="savedItemsGrid">
+                <!-- Saved items will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="newsletter-container">
+                <h3>Subscribe on our newsletter</h3>
+                <p>Get daily news on upcoming offers from many suppliers all over the world</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER SECTION ===== -->
+    <footer class="main-footer">
+        <div class="footer-top-section">
+            <div class="footer-brand">
+                <div class="brand-logo">
+                    <img src="../assets/Layout/Brand/logo-colored.png" alt="Brand Logo">
+                </div>
+                <p>Best information about the company goes here but now lorem ipsum is</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-icon twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-icon linkedin"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="social-icon instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon youtube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-group">
+                <nav class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </nav>
+                <nav class="footer-column">
+                    <h4>Partnership</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </nav>
+                <nav class="footer-column">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Money Refund</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </nav>
+                <nav class="footer-column">
+                    <h4>For users</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">My Orders</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-get-app">
+                <h4>Get app</h4>
+                <a href="#" class="app-store-button"><img src="../assets/Layout/Misc/market-button.png"
+                        alt="App Store"></a>
+                <a href="#" class="google-play-button"><img src="../assets/Layout/Misc/Group.png" alt="Google Play"></a>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>&copy; 2023 Ecommerce.</p>
+            <div class="language-selector">
+                <img src="../assets/Layout1/Image/flags/GB@2x.png" alt="English Flag" class="flag-icon">
+                <span>English</span>
+                <span class="dropdown-arrow">▲</span>
+            </div>
+        </div>
+        <li class="dropdown">
+            <a href="#">
+                Ship to
+                <img src="../assets/Layout1/Image/flags/DE@2x.png" class="flag-icon" alt="Flag">
+                <i class="fa-solid fa-caret-down"></i>
+            </a>
+        </li>
+        </ul>
+        </div>
+        </nav>
+        </header>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="cart-main">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb-container" aria-label="Breadcrumb">
+                <div class="breadcrumb">
+                    <a href="../../index.html">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span>My cart</span>
+                </div>
+            </nav>
+
+            <!-- Cart Content -->
+            <div class="cart-content-wrapper">
+                <!-- Left: Cart Items -->
+                <section class="cart-items-section">
+                    <div class="cart-header">
+                        <h1>My cart (<span id="cartItemCount">0</span>)</h1>
+                    </div>
+
+                    <!-- Cart Items List -->
+                    <div class="cart-items-list" id="cartItemsList">
+                        <!-- Cart items will be populated by JavaScript -->
+                        <div class="empty-cart" id="emptyCart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <h3>Your cart is empty</h3>
+                            <p>Looks like you haven't added any items to your cart yet.</p>
+                            <a href="products.html" class="continue-shopping-btn">Continue Shopping</a>
+                        </div>
+                    </div>
+
+                    <!-- Cart Actions -->
+                    <div class="cart-actions">
+                        <a href="../../index.html" class="back-to-shop-btn">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Back to shop
+                        </a>
+                        <button class="remove-all-btn" id="removeAllBtn">
+                            <i class="fa-solid fa-trash"></i>
+                            Remove all
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Right: Checkout Sidebar -->
+                <aside class="checkout-sidebar">
+                    <!-- Coupon Section -->
+                    <div class="coupon-section">
+                        <p class="coupon-label">Have a coupon?</p>
+                        <div class="coupon-input-group">
+                            <input type="text" placeholder="Add coupon" id="couponInput">
+                            <button class="apply-coupon-btn" id="applyCouponBtn">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="order-summary">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotalAmount">$0.00</span>
+                        </div>
+                        <div class="summary-row discount">
+                            <span>Discount:</span>
+                            <span class="discount-value" id="discountAmount">- $0.00</span>
+                        </div>
+                        <div class="summary-row tax">
+                            <span>Tax:</span>
+                            <span class="tax-value" id="taxAmount">+ $0.00</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span class="total-value" id="totalAmount">$0.00</span>
+                        </div>
+
+                        <button class="checkout-btn" id="checkoutBtn">
+                            Checkout
+                        </button>
+
+                        <div class="payment-methods">
+                            <i class="fa-brands fa-cc-visa"></i>
+                            <i class="fa-brands fa-cc-mastercard"></i>
+                            <i class="fa-brands fa-paypal"></i>
+                            <i class="fa-brands fa-apple-pay"></i>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Saved for Later Section -->
+            <section class="saved-for-later-section">
+                <div class="section-header">
+                    <h2>Saved for later</h2>
+                </div>
+                <div class="saved-items-grid" id="savedItemsGrid">
+                    <!-- Saved items will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Newsletter Section -->
+            <section class="newsletter-section">
+                <div class="newsletter-container">
+                    <h3>Subscribe on our newsletter</h3>
+                    <p>Get daily news on upcoming offers from many suppliers all over the world</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!-- ===== FOOTER SECTION ===== -->
+        <footer class="main-footer">
+            <div class="footer-top-section">
+                <div class="footer-brand">
+                    <div class="brand-logo">
+                        <img src="../assets/Layout/Brand/logo-colored.png" alt="Brand Logo">
+                    </div>
+                    <p>Best information about the company goes here but now lorem ipsum is</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="social-icon twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon linkedin"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="social-icon instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon youtube"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <nav class="footer-column">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Find store</a></li>
+                            <li><a href="#">Categories</a></li>
+                            <li><a href="#">Blogs</a></li>
+                        </ul>
+                    </nav>
+                    <nav class="footer-column">
+                        <h4>Partnership</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Find store</a></li>
+                            <li><a href="#">Categories</a></li>
+                            <li><a href="#">Blogs</a></li>
+                        </ul>
+                    </nav>
+                    <nav class="footer-column">
+                        <h4>Information</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Money Refund</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Contact us</a></li>
+                        </ul>
+                    </nav>
+                    <nav class="footer-column">
+                        <h4>For users</h4>
+                        <ul>
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">Register</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">My Orders</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer-get-app">
+                    <h4>Get app</h4>
+                    <a href="#" class="app-store-button"><img src="../assets/Layout/Misc/market-button.png"
+                            alt="App Store"></a>
+                    <a href="#" class="google-play-button"><img src="../assets/Layout/Misc/Group.png"
+                            alt="Google Play"></a>
+                </div>
+            </div>
+            <div class="footer-bottom-bar">
+                <p>&copy; 2023 Ecommerce.</p>
+                <div class="language-selector">
+                    <img src="../assets/Layout1/Image/flags/GB@2x.png" alt="English Flag" class="flag-icon">
+                    <span>English</span>
+                    <span class="dropdown-arrow">▲</span>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="../js/cart.js"></script>
+        <script src="../js/auth.js"></script>
+
+        <!-- ElevenLabs Chatbot Widget -->
+        <elevenlabs-convai agent-id="agent_5401kc8f5b2eeqbs7tfxz4d9yqmq"></elevenlabs-convai>
+        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+
+        <script src="../js/script.js"></script>
+        <script src="../js/animations.js"></script>
+</body>
+
+</html>

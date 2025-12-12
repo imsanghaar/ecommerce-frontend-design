@@ -73,23 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ===== MAGNETIC BUTTON EFFECT =====
-    const magneticBtns = document.querySelectorAll('.search-button, .src-btn, .join-now-button, .login-button, .buy-now-btn');
+    // ===== BUTTON STYLING (No Hover Animation) =====
+    // Removed magnetic, shine, and transform hover effects from buttons
+    // Only keeping the ripple click effect
+    const buttons = document.querySelectorAll('.search-button, .src-btn, .join-now-button, .login-button, .buy-now-btn, .submit-button, button');
     
-    magneticBtns.forEach(btn => {
-        btn.classList.add('magnetic-btn', 'ripple-btn', 'shine-btn');
-        
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-        });
-
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0)';
-        });
+    buttons.forEach(btn => {
+        // Remove any existing animation classes that cause hover effects
+        btn.classList.remove('magnetic-btn', 'shine-btn', 'morph-btn', 'hover-lift');
     });
 
     // ===== RIPPLE EFFECT ON CLICK =====
