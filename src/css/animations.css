@@ -115,7 +115,7 @@ html {
 .filter-list .checkbox-label,
 .filter-list .radio-label {
     transition: all 0.2s ease;
-    padding: 6px 8px;
+    padding: 6px 8px 6px 42px; /* Increased left padding for more checkbox spacing */
     border-radius: 4px;
     margin: -6px -8px;
 }

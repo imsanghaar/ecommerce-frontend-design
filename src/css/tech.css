@@ -123,7 +123,8 @@
     color: #505050;
     transition: color 0.2s ease;
     position: relative;
-    padding-left: 28px;
+    padding-left: 35px; /* Increased spacing */
+    margin-bottom: 8px; /* Added bottom margin */
 }
 
 .checkbox-label:hover {
@@ -186,7 +187,8 @@
     color: #505050;
     transition: color 0.2s ease;
     position: relative;
-    padding-left: 28px;
+    padding-left: 35px; /* Increased spacing */
+    margin-bottom: 8px; /* Added bottom margin */
 }
 
 .radio-label:hover {

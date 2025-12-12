@@ -217,6 +217,102 @@
             <div id="ordersList">
                 <!-- Data will be populated by JS -->
             </div>
+
+            <!-- Order Total and Payment Button -->
+            <div id="orderSummary" style="display: none; margin-top: 20px; padding: 15px; background: #f7fafc; border: 1px solid #dee2e7; border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3>Total for all orders: <span id="totalAmount">$0.00</span></h3>
+                </div>
+                <button id="confirmOrderBtn" class="auth-btn" style="background: #0d6efd; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer;">
+                    Confirm Order
+                </button>
+            </div>
+
+            <!-- Payment Popup -->
+            <div id="paymentPopup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; justify-content: center; align-items: center;">
+                <div style="background: white; padding: 25px; border-radius: 8px; width: 90%; max-width: 500px; position: relative;">
+                    <h3 style="margin-top: 0;">Select Payment Method</h3>
+
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="paymentMethod">Payment Method:</label>
+                        <select id="paymentMethod" class="form-input" style="width: 100%; padding: 10px; border: 1px solid #dee2e7; border-radius: 6px;">
+                            <option value="">Select Payment Method</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="easypaisa">Easypaisa</option>
+                            <option value="cod">Cash On Delivery (COD)</option>
+                            <option value="visa">Visa</option>
+                            <option value="mastercard">Mastercard</option>
+                            <option value="amex">American Express</option>
+                            <option value="applepay">Apple Pay</option>
+                        </select>
+                    </div>
+
+                    <!-- Easypaisa Number Input -->
+                    <div id="easypaisaSection" class="payment-details" style="display: none; margin-bottom: 15px;">
+                        <label for="easypaisaNumber">Easypaisa Mobile Number:</label>
+                        <input type="tel" id="easypaisaNumber" class="form-input" placeholder="e.g., 03001234567" style="width: 100%; padding: 10px; border: 1px solid #dee2e7; border-radius: 6px;">
+                    </div>
+
+                    <!-- Credit Card Details (for Visa, Mastercard, Amex) -->
+                    <div id="cardSection" class="payment-details" style="display: none; margin-bottom: 15px;">
+                        <label for="cardNumber">Card Number:</label>
+                        <input type="text" id="cardNumber" class="form-input" placeholder="e.g., 1234 5678 9012 3456" style="width: 100%; padding: 10px; border: 1px solid #dee2e7; border-radius: 6px; margin-bottom: 10px;">
+
+                        <div style="display: flex; gap: 10px;">
+                            <div style="flex: 1;">
+                                <label for="expiryDate">Expiry Date:</label>
+                                <input type="text" id="expiryDate" class="form-input" placeholder="MM/YY" style="width: 100%; padding: 10px; border: 1px solid #dee2e7; border-radius: 6px;">
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="cvv">CVV:</label>
+                                <input type="text" id="cvv" class="form-input" placeholder="123" style="width: 100%; padding: 10px; border: 1px solid #dee2e7; border-radius: 6px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apple Pay Section -->
+                    <div id="applepaySection" class="payment-details" style="display: none; margin-bottom: 15px;">
+                        <label>Apple Pay Account:</label>
+                        <p style="margin: 5px 0; font-size: 14px; color: #505050;">Your linked Apple device will be used for authentication.</p>
+                    </div>
+
+                    <div id="paymentIcons" style="display: flex; justify-content: space-around; margin: 20px 0;">
+                        <i class="fa-brands fa-paypal" style="font-size: 32px; color: #0079C1;"></i>
+                        <i class="fa-solid fa-wallet" style="font-size: 32px; color: #00C2CB;"></i>
+                        <i class="fa-solid fa-hand-holding-dollar" style="font-size: 32px; color: #2E8B57;"></i>
+                        <i class="fa-brands fa-cc-visa" style="font-size: 32px; color: #1A1F71;"></i>
+                        <i class="fa-brands fa-cc-mastercard" style="font-size: 32px; color: #EB001B;"></i>
+                        <i class="fa-brands fa-cc-amex" style="font-size: 32px; color: #016FD0;"></i>
+                        <i class="fa-brands fa-apple-pay" style="font-size: 32px; color: #000000;"></i>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button id="confirmPaymentBtn" class="auth-btn" style="flex: 1; background: #0d6efd; color: white; padding: 12px; border: none; border-radius: 6px; cursor: pointer;">
+                            Confirm Payment
+                        </button>
+                        <button id="cancelPaymentBtn" style="flex: 1; background: #f8f9fa; color: #505050; padding: 12px; border: 1px solid #dee2e7; border-radius: 6px; cursor: pointer;">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Confirmation Popup -->
+            <div id="paymentConfirmPopup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10001; justify-content: center; align-items: center;">
+                <div style="background: white; padding: 25px; border-radius: 8px; width: 90%; max-width: 400px; position: relative;">
+                    <h3 style="margin-top: 0;">Confirm Payment</h3>
+                    <p>Are you sure you want to proceed with this payment?</p>
+
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button id="yesPaymentBtn" class="auth-btn" style="flex: 1; background: #0d6efd; color: white; padding: 12px; border: none; border-radius: 6px; cursor: pointer;">
+                            Yes
+                        </button>
+                        <button id="noPaymentBtn" style="flex: 1; background: #f8f9fa; color: #505050; padding: 12px; border: 1px solid #dee2e7; border-radius: 6px; cursor: pointer;">
+                            No
+                        </button>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <script src="../js/auth.js"></script>
