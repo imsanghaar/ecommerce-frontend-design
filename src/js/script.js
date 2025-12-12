@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Search Functionality
+// Search Functionality
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.querySelector('.search-input');
     const searchButton = document.querySelector('.search-button');
@@ -193,8 +194,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function performSearch() {
         const query = searchInput.value.trim();
         if (query) {
-            // Redirect to products page with search query for comprehensive search
-            window.location.href = `src/html/products.html?search=${encodeURIComponent(query)}`;
+            // Determine correct path to products.html
+            const path = window.location.pathname;
+            const isRoot = path.endsWith('index.html') || path.endsWith('/');
+            const targetPath = isRoot ? 'src/html/products.html' : 'products.html';
+            
+            window.location.href = `${targetPath}?search=${encodeURIComponent(query)}`;
         }
     }
 
@@ -211,3 +216,44 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// ===== GLOBAL ADD TO CART =====
+window.addToCart = function(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingItem = cart.find(item => item.id === product.id);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            ...product,
+            quantity: 1,
+            selectedSize: product.size || null
+        });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Update Header Count
+    updateGlobalCartCount();
+    
+    // Show Toast
+    if (typeof showGlobalToast === 'function') {
+        showGlobalToast(`${product.name} added to cart!`, 'success');
+    } else {
+        alert(`${product.name} added to cart!`);
+    }
+};
+
+function updateGlobalCartCount() {
+    const countEl = document.getElementById('headerCartCount');
+    if (countEl) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        countEl.textContent = totalItems;
+        countEl.style.cssText = totalItems > 0 ? 'display: flex !important' : 'display: none !important';
+    }
+}
+
+// Initialize Cart Count
+document.addEventListener('DOMContentLoaded', updateGlobalCartCount);

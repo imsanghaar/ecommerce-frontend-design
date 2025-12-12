@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Premium Cotton T-Shirt Multi Colors',
             price: 29.99,
             originalPrice: 49.99,
-            image: '../assets/layout/alibaba/image/cloth/Bitmap.png',
+            image: '../assets/Layout/alibaba/Image/cloth/Bitmap.png',
             category: 'clothing',
             rating: 4,
             reviews: 89,
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Classic Blue Denim Jeans Shorts',
             price: 45.00,
             originalPrice: 65.00,
-            image: '../assets/layout/alibaba/image/cloth/Bitmap (2).png',
+            image: '../assets/Layout/alibaba/Image/cloth/Bitmap (2).png',
             category: 'clothing',
             rating: 4.5,
             reviews: 156,
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Brown Winter Coat Medium Size',
             price: 120.00,
             originalPrice: 180.00,
-            image: '../assets/layout/alibaba/image/cloth/2 1.png',
+            image: '../assets/Layout/alibaba/Image/cloth/2 1.png',
             category: 'clothing',
             rating: 5,
             reviews: 78,
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Canvas Travel Bag Large Capacity',
             price: 89.95,
             originalPrice: null,
-            image: '../assets/layout/alibaba/image/cloth/image 26.png',
+            image: '../assets/Layout/alibaba/Image/cloth/image 26.png',
             category: 'clothing',
             rating: 4,
             reviews: 45,
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Genuine Leather Wallet for Men',
             price: 35.00,
             originalPrice: 55.00,
-            image: '../assets/layout/alibaba/image/cloth/image 24.png',
+            image: '../assets/Layout/alibaba/Image/cloth/image 24.png',
             category: 'clothing',
             rating: 4.5,
             reviews: 234,
@@ -400,6 +400,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+
+        // Add to Cart (Delegation)
+        if (productsGrid) {
+            productsGrid.addEventListener('click', (e) => {
+                const btn = e.target.closest('.add-to-cart-btn');
+                if (btn) {
+                    const productData = JSON.parse(btn.dataset.product);
+                    addToCart(productData);
+                }
+            });
+        }
+
 
         // Wishlist Toggle (Event Delegation)
         document.addEventListener('click', (e) => {
@@ -718,6 +730,39 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }
+
+    // ===== ADD TO CART =====
+    function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.id === product.id);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                ...product,
+                quantity: 1
+            });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showToast(`${product.name} added to cart`, 'success');
+        updateHeaderCartCount();
+    }
+
+    function updateHeaderCartCount() {
+        const countEl = document.getElementById('headerCartCount');
+        if (countEl) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countEl.textContent = totalItems;
+            countEl.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+    }
+
+    // Initialize Header Cart Count on Load
+    updateHeaderCartCount();
+
 
     // Initialize
     init();

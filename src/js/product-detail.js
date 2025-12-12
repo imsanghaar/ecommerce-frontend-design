@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             rating: 4,
             reviews: 89,
             sold: 156,
-            image: '../assets/layout/alibaba/image/cloth/Bitmap.png',
+            image: '../assets/Layout/alibaba/Image/cloth/Bitmap.png',
             description: 'High-quality cotton t-shirt available in multiple colors. Perfect for casual wear with a comfortable fit.',
             features: ['cotton', 'comfortable']
         },
