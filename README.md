@@ -11,9 +11,10 @@ This project is a frontend implementation of an e-commerce platform designed to 
 ### 1. User Authentication & Profile Management
 *   **Sign Up & Login**: Custom forms with validation and animations.
 *   **Profile Management**: Profile picture upload (Base64), username, and email storage.
-*   **Persistence**: User session and data are stored in the browser's `localStorage`, allowing data to persist across refreshes.
-*   **Password Recovery**: Simulated "Forgot Password" functionality.
+*   **Cloud Storage**: User data is stored in **JSONBin.io** cloud database, persisting across devices and deployments.
+*   **Password Recovery**: Secure password recovery via **EmailJS** - passwords are sent to the user's registered email address.
 *   **Protected Routes**: Profile and orders pages require authentication.
+*   **Offline Support**: Falls back to localStorage when cloud is unavailable.
 
 ### 2. Product Experience
 *   **Homepage**: Dynamic hero section that welcomes logged-in users.
@@ -177,11 +178,19 @@ This project is a frontend implementation of an e-commerce platform designed to 
 *   **Font Awesome 7**: Comprehensive icon library including payment method icons.
 *   **Google Fonts**: Typography with the Inter font family.
 *   **ElevenLabs Convai**: AI-powered voice and text chatbot integration.
-*   **LocalStorage**: Client-side data persistence for users, cart, and orders.
+*   **EmailJS**: Email service for password recovery without backend.
+*   **JSONBin.io**: Cloud-based JSON storage for persistent user data.
+*   **LocalStorage**: Client-side data persistence for cart and orders (with cloud sync for users).
 
 ## Data Storage
 
-*   **User Data**: Stored in `localStorage` under `users` and `currentUser`
+### Cloud Storage (JSONBin.io)
+*   **User Data**: Stored in JSONBin.io cloud database for persistence across devices
+*   **Automatic Sync**: Users are synced to cloud on signup and fetched on login
+*   **Offline Fallback**: Falls back to localStorage when cloud is unavailable
+
+### Local Storage (Browser)
+*   **Current Session**: `currentUser` stores the logged-in user
 *   **Shopping Cart**: Stored in `localStorage` under `cart`
 *   **Saved Items**: Stored in `localStorage` under `savedItems`
 *   **Order History**: Stored in `localStorage` under `orders`
@@ -189,6 +198,13 @@ This project is a frontend implementation of an e-commerce platform designed to 
 
 ## API Integrations
 
+*   **EmailJS**: Password recovery email service
+    - Service ID: `service_hx9wjlb`
+    - Template ID: `template_3g02fkh`
+    - Sends password recovery emails directly from the browser
+*   **JSONBin.io**: Cloud JSON storage for user data
+    - Bin ID: `693c63e4ae596e708f95a256`
+    - Free tier with 10,000 requests/month
 *   **WhatsApp Business API**: Direct inquiry form integration
 *   **ElevenLabs Convai Widget**: AI chatbot service
 *   **Font Awesome CDN**: Icon delivery
@@ -201,7 +217,9 @@ This project is a frontend implementation of an e-commerce platform designed to 
 
 ## Development Notes
 
-*   **Data Storage**: Since there is no backend, all data (users, cart, orders) is stored in the browser's LocalStorage. Clearing your browser cache will reset the application data.
+*   **Cloud Storage**: User data is stored in JSONBin.io cloud database, allowing users to login from any device.
+*   **Local Fallback**: If cloud is unavailable, the app falls back to localStorage.
+*   **Email Service**: Password recovery uses EmailJS to send emails directly from the browser - no backend required.
 *   **Chatbot**: The site integrates an external **ElevenLabs Convai Widget** (`agent_5401kc8f5b2eeqbs7tfxz4d9yqmq`). Ensure you have internet access for the widget to load appropriately.
 *   **Payment System**: The payment system is simulated for demonstration purposes. No real transactions take place.
 *   **Order Management**: Orders are cleared from storage after successful payment confirmation (simulated).

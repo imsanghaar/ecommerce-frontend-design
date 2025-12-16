@@ -33,6 +33,9 @@ const initialDuration = (4 * 86400) + (13 * 3600) + (34 * 60) + 56;
 
 document.addEventListener('DOMContentLoaded', () => {
     startCountdown(initialDuration);
+    startCountdown(initialDuration);
+
+
 });
 
 
@@ -257,3 +260,23 @@ function updateGlobalCartCount() {
 
 // Initialize Cart Count
 document.addEventListener('DOMContentLoaded', updateGlobalCartCount);
+
+// Chatbot Welcome Popup Logic
+document.addEventListener('DOMContentLoaded', function() {
+    const popupOverlay = document.getElementById('chatbotWelcomePopup');
+    const closeBtn = document.getElementById('closeChatbotPopup');
+
+    // Show popup after 1 second
+    setTimeout(() => {
+        if (popupOverlay) {
+            popupOverlay.classList.add('active');
+        }
+    }, 1000);
+
+    // Close logic
+    if (closeBtn && popupOverlay) {
+        closeBtn.addEventListener('click', () => {
+            popupOverlay.classList.remove('active');
+        });
+    }
+});

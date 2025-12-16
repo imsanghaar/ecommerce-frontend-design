@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Checkout
+        // Checkout Button - Open Modal
         if (checkoutBtn) {
             checkoutBtn.addEventListener('click', () => {
                 if (cart.length === 0) {
@@ -309,17 +309,93 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
+                // Open Modal
+                const modal = document.getElementById('checkoutModal');
+                const totalDisplay = document.getElementById('modalTotalAmount');
+                
+                // Pre-fill form if user has address
+                document.getElementById('checkoutName').value = currentUser.name || '';
+                
+                if (currentUser.address) {
+                    document.getElementById('checkoutPhone').value = currentUser.address.phone || '';
+                    document.getElementById('checkoutStreet').value = currentUser.address.street || '';
+                    document.getElementById('checkoutCity').value = currentUser.address.city || '';
+                    document.getElementById('checkoutState').value = currentUser.address.state || '';
+                    document.getElementById('checkoutZip').value = currentUser.address.zip || '';
+                    document.getElementById('checkoutCountry').value = currentUser.address.country || 'US';
+                }
+
+                // Update total in modal
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const tax = total * 0.1;
+                const grandTotal = total + tax;
+                if (totalDisplay) totalDisplay.textContent = `$${grandTotal.toFixed(2)}`;
+
+                modal.style.display = 'flex';
+            });
+        }
+
+        // Close Modal
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelCheckoutBtn = document.getElementById('cancelCheckoutBtn');
+        const modal = document.getElementById('checkoutModal');
+
+        function closeCheckoutModal() {
+            if (modal) modal.style.display = 'none';
+        }
+
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeCheckoutModal);
+        if (cancelCheckoutBtn) cancelCheckoutBtn.addEventListener('click', closeCheckoutModal);
+
+        // Confirm Order Button
+        const confirmOrderBtn = document.getElementById('confirmOrderBtn');
+        if (confirmOrderBtn) {
+            confirmOrderBtn.addEventListener('click', async () => {
+                // Get form values
+                const name = document.getElementById('checkoutName').value;
+                const phone = document.getElementById('checkoutPhone').value;
+                const street = document.getElementById('checkoutStreet').value;
+                const city = document.getElementById('checkoutCity').value;
+                const state = document.getElementById('checkoutState').value;
+                const zip = document.getElementById('checkoutZip').value;
+                const country = document.getElementById('checkoutCountry').value;
+                const saveAddress = document.getElementById('saveAddress').checked;
+
+                if (!name || !phone || !street || !city || !state || !zip) {
+                    showToast('Please fill in all required fields.', 'error');
+                    return;
+                }
+
+                const shippingAddress = { name, phone, street, city, state, zip, country };
+
+                // Get Current User
+                let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+                // Save address if checked
+                if (saveAddress && window.updateUserProfile) {
+                    currentUser.address = shippingAddress;
+                    showToast('Saving address...', 'info');
+                    await window.updateUserProfile(currentUser);
+                }
+
                 showToast('Processing order...', 'success');
+                confirmOrderBtn.disabled = true;
+                confirmOrderBtn.textContent = 'Processing...';
                 
                 // Create Order
                 const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const tax = total * 0.1;
+                const grandTotal = total + tax;
+
                 const newOrder = {
-                    id: Math.floor(100000 + Math.random() * 900000), // Random 6 digit ID
+                    id: Math.floor(100000 + Math.random() * 900000),
                     username: currentUser.username,
                     date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
                     status: 'Processing',
                     items: [...cart],
-                    total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)
+                    total: grandTotal.toFixed(2),
+                    shippingAddress: shippingAddress
                 };
 
                 orders.push(newOrder);

@@ -191,15 +191,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     paymentDetails += ` (Card: ${maskedCardNumber}, Expiry: ${expiryDate.value})`;
                 }
 
-                // Clear orders after payment confirmation
+                // Update orders status to 'Paid' instead of deleting
                 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
                 if (currentUser) {
-                    // Remove orders for this user from all orders
                     const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
-                    const updatedOrders = allOrders.filter(order => order.username !== currentUser.username);
-                    localStorage.setItem('orders', JSON.stringify(updatedOrders));
+                    
+                    // Update status for this user's Processing orders
+                    allOrders.forEach(order => {
+                        if (order.username === currentUser.username && order.status === 'Processing') {
+                            order.status = 'Paid';
+                            order.paymentMethod = selectedMethod;
+                            order.paymentDate = new Date().toLocaleDateString();
+                        }
+                    });
 
-                    // Refresh the page to show empty state
+                    localStorage.setItem('orders', JSON.stringify(allOrders));
+                    
+                    alert('Payment Successful! Thank you for your order.');
+                    
+                    // Reload to update status in UI
                     location.reload();
                 }
 

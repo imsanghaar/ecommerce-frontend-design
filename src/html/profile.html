@@ -112,7 +112,12 @@
 
         <!-- Content -->
         <main class="profile-content">
-            <h2 class="section-title">My Profile</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 class="section-title" style="margin-bottom: 0;">My Profile</h2>
+                <button id="editProfileBtn" class="auth-btn" style="width: auto; padding: 8 20px;">
+                    <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+                </button>
+            </div>
 
             <div class="info-grid">
                 <div class="info-item">
@@ -131,6 +136,11 @@
                 </div>
 
                 <div class="info-item">
+                    <label>Shipping Address</label>
+                    <p id="profileAddress" style="line-height: 1.5;">Loading...</p>
+                </div>
+
+                <div class="info-item">
                     <label>Password</label>
                     <p>********</p>
                 </div>
@@ -141,6 +151,64 @@
                 Logout from all devices
             </button>
         </main>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="popup-overlay" style="display: none;">
+        <div class="popup-content" style="max-width: 500px; max-height: 90vh; overflow-y: auto;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h3>Edit Profile</h3>
+            </div>
+
+            <form id="editProfileForm">
+                <div class="form-group" style="text-align: center; margin-bottom: 20px;">
+                    <div id="editImagePreview" class="edit-image-preview-container">
+                        <i class="fa-solid fa-user" style="font-size: 40px; color: #ccc;"></i>
+                    </div>
+                    <label for="editProfileImage" style="cursor: pointer; color: #0d6efd; font-weight: 500;">Change
+                        Photo</label>
+                    <input type="file" id="editProfileImage" accept="image/*" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="editName" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Street Address</label>
+                    <input type="text" id="editStreet" class="form-input" placeholder="Street Address">
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>City</label>
+                        <input type="text" id="editCity" class="form-input">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>State</label>
+                        <input type="text" id="editState" class="form-input">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>ZIP Code</label>
+                        <input type="text" id="editZip" class="form-input">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Country</label>
+                        <input type="text" id="editCountry" class="form-input" value="US">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="button" id="cancelEditBtn" class="auth-btn"
+                        style="background: white; color: #505050; border: 1px solid #dee2e7;">Cancel</button>
+                    <button type="submit" class="auth-btn">Save Changes</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Scripts -->

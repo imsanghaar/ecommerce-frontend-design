@@ -11,35 +11,134 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="src/css/animations.css">
     <link rel="stylesheet" href="src/css/responsive.css">
+    <style>
+        /* Chatbot Popup Styles */
+        .chatbot-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            /* Background Blur */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .chatbot-popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chatbot-popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .chatbot-popup-overlay.active .chatbot-popup-content {
+            transform: translateY(0);
+        }
+
+        .close-popup-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+
+        .close-popup-btn:hover {
+            color: #333;
+        }
+
+        .popup-icon-container {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0d6efd, #0099ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 20px rgba(13, 110, 253, 0.3);
+        }
+
+        .popup-icon-container i {
+            font-size: 40px;
+            color: white;
+        }
+
+        .chatbot-popup-content h2 {
+            margin: 0 0 10px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .chatbot-popup-content p {
+            margin: 0;
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Ribbon Animation */
+        .ribbon-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ribbon {
+            position: absolute;
+            top: -20px;
+            width: 10px;
+            height: 20px;
+            background: #ff0000;
+            border-radius: 5px;
+            animation: fall 3s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(400px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Promotion Banner -->
-    <div class="promotion-banner"
-        style="background: linear-gradient(90deg, #0d6efd, #0b5ed7); color: white; padding: 12px 0; text-align: center; overflow: hidden; position: relative;">
-        <div class="promotion-content"
-            style="display: flex; align-items: center; justify-content: center; gap: 20px; font-size: 15px; font-weight: 500;">
-            <i class="fa-solid fa-robot" style="color: #fff; font-size: 20px;"></i>
-            <div class="slideshow-container" style="flex: 1; height: 24px; position: relative; overflow: hidden;">
-                <div class="slideshow-text"
-                    style="position: absolute; width: 100%; opacity: 1; animation: textFade 12s infinite;">
-                    Chatbot is now available. Ask anything about us!
-                </div>
-                <div class="slideshow-text"
-                    style="position: absolute; width: 100%; opacity: 0; animation: textFade 12s infinite; animation-delay: 3s;">
-                    Free shipping on orders over $50!
-                </div>
-                <div class="slideshow-text"
-                    style="position: absolute; width: 100%; opacity: 0; animation: textFade 12s infinite; animation-delay: 6s;">
-                    New products added daily!
-                </div>
-                <div class="slideshow-text"
-                    style="position: absolute; width: 100%; opacity: 0; animation: textFade 12s infinite; animation-delay: 9s;">
-                    24/7 customer support available!
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <header>
         <div class="top-header">
@@ -79,8 +178,7 @@
         <nav class="secondary-nav">
             <div class="header-container">
                 <ul class="nav-links left-links">
-                    <li><a href="#" class="all-category-link"><i class="fa-solid fa-bars"></i> All
-                            category</a></li>
+                    <li><a href="#" class="all-category-link"><i class="fa-solid fa-bars"></i> All category</a></li>
                     <li><a href="#">Hot offers</a></li>
                     <li><a href="#">Gift boxes</a></li>
                     <li><a href="#">Projects</a></li>
@@ -661,6 +759,25 @@
 
     <!-- ElevenLabs Chatbot Widget -->
     <elevenlabs-convai agent-id="agent_5401kc8f5b2eeqbs7tfxz4d9yqmq"></elevenlabs-convai>
+    <!-- Chatbot Welcome Popup -->
+    <div id="chatbotWelcomePopup" class="chatbot-popup-overlay">
+        <div class="chatbot-popup-content">
+            <button class="close-popup-btn" id="closeChatbotPopup">&times;</button>
+            <div class="popup-icon-container">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+            <h2>Chatbot is available!</h2>
+            <p>Ask anything from it about us.</p>
+            <div class="ribbon-container">
+                <div class="ribbon" style="left: 10%; animation-delay: 0s; background: #FF5733;"></div>
+                <div class="ribbon" style="left: 30%; animation-delay: 2s; background: #33FF57;"></div>
+                <div class="ribbon" style="left: 70%; animation-delay: 1s; background: #3357FF;"></div>
+                <div class="ribbon" style="left: 50%; animation-delay: 3s; background: #FF33A1;"></div>
+                <div class="ribbon" style="left: 90%; animation-delay: 1.5s; background: #FFFF33;"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 </body>
 
